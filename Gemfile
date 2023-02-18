@@ -13,6 +13,8 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.18'
 
 gem 'active_model_serializers', '~> 0.10.2'
 
+gem 'byebug', '~> 11.1', '>= 11.1.3'
+
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
 
