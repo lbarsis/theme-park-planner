@@ -1,6 +1,6 @@
 class ThemeParksController < ApplicationController
   def index
     theme_parks = ThemePark.all
-    render json: theme_parks
+    render json: theme_parks, status: :ok
   end
 end
