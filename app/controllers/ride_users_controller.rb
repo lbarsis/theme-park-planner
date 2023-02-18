@@ -1,0 +1,2 @@
+class RideUsersController < ApplicationController
+end

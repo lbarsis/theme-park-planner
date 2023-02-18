@@ -1,0 +1,2 @@
+class ItineraryRidesController < ApplicationController
+end
