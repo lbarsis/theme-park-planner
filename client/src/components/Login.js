@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-function Login() {
+function Login({ onLogin }) {
+  const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -20,6 +21,14 @@ function Login() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(user => onLogin(user))
+        } else {
+          r.json().then(err => setErrors(err.errors))
+        }
+      }
+      )
 
   }
 
@@ -41,7 +50,7 @@ function Login() {
           onChange={handleChange}
           value={formData.password}
         />
-        
+
         <button>submit</button>
       </form>
     </div>

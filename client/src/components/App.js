@@ -16,13 +16,24 @@ function App() {
       .then(themeParks => setThemeParks(themeParks))
   }, [])
 
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setCurrentUser(user));
+      }
+    });
+  }, []);
+
+  console.log(currentUser)
+
   return (
     <div className="App">
       <Navbar />
       <Routes>
         <Route path='/' element={<Home themeParks={themeParks} />} />
         <Route path='/rides' element={<Rides />} />
-        <Route path='/login' element={<Login />} />
+        <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
         <Route path='/signup' element={<Signup />} />
       </Routes>
     </div>
