@@ -15,11 +15,12 @@ function Login() {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch('/sessions', {
+    fetch('/login', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     })
+
   }
 
   return (
@@ -40,9 +41,9 @@ function Login() {
           onChange={handleChange}
           value={formData.password}
         />
+        
+        <button>submit</button>
       </form>
-
-      <button type='submit'>Submit</button>
     </div>
   );
 }

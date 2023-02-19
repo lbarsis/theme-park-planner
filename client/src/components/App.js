@@ -7,7 +7,7 @@ import Signup from './Signup';
 import Login from './Login'
 
 function App() {
-
+  const [currentUser, setCurrentUser] = useState(null)
   const [themeParks, setThemeParks] = useState([])
 
   useEffect(() => {
