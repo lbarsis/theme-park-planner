@@ -3,6 +3,8 @@ import { Routes, Route } from 'react-router-dom'
 import Navbar from './Navbar';
 import Home from './Home';
 import Rides from './Rides'
+import Signup from './Signup';
+import Login from './Login'
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
       <Routes>
         <Route path='/' element={<Home themeParks={themeParks} />} />
         <Route path='/rides' element={<Rides />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/signup' element={<Signup />} />
       </Routes>
     </div>
   );
