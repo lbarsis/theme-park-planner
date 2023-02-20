@@ -5,6 +5,7 @@ import Home from './Home';
 import Rides from './Rides'
 import Signup from './Signup';
 import Login from './Login'
+import UserItineraries from './UserItineraries';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -25,16 +26,15 @@ function App() {
     });
   }, []);
 
-  console.log(currentUser)
-
   return (
     <div className="App">
-      <Navbar />
+      <Navbar onLogout={setCurrentUser} />
       <Routes>
         <Route path='/' element={<Home themeParks={themeParks} />} />
         <Route path='/rides' element={<Rides />} />
         <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
         <Route path='/signup' element={<Signup />} />
+        <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} />
       </Routes>
     </div>
   );
