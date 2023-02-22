@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import {useNavigate} from 'react-router-dom'
 
 function Login({ onLogin }) {
+  const navigate = useNavigate()
   const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({
     username: '',
@@ -23,14 +25,20 @@ function Login({ onLogin }) {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(user => onLogin(user))
+          r.json().then(user => {
+            onLogin(user)
+          })
         } else {
-          r.json().then(err => setErrors(err.errors))
+          r.json().then(err => {
+            setErrors(err.errors)
+          })
         }
       }
       )
-
+      navigate('/')
   }
+
+  const displayErrors = errors.map(e => <p key={e.indexOf(e)}>{e}</p>)
 
   return (
     <div>
@@ -53,6 +61,7 @@ function Login({ onLogin }) {
 
         <button>submit</button>
       </form>
+      {errors ? displayErrors : null}
     </div>
   );
 }
