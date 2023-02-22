@@ -36,32 +36,25 @@ function App() {
 
   // currentUser ? console.log(true) : console.log(false)
 
-  if (currentUser) {
-    return (
-      <div className="App">
-          <Navbar onLogout={setCurrentUser} />
-          <Routes>
-            <Route path='/' element={<Home themeParks={themeParks} />} />
-            <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
-            <Route path='/signup' element={<Signup />} />
-            <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} />
-          </Routes>
-      </div>
-    );
-  } else {
-    return (
-      <div className="App">
-          <Navbar />
-          <Routes>
-            <Route path='/' element={<Home themeParks={themeParks} />} />
-            <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
-            <Route path='/signup' element={<Signup />} />
-            {/* <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} /> */}
-          </Routes>
-      </div>
-    );
-  }
 
+  return (
+    <div className="App">
+      <Navbar user={currentUser} onLogout={setCurrentUser} />
+      {currentUser ?
+        <Routes>
+          <Route path='/' element={<Home themeParks={themeParks} />} />
+          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} />
+        </Routes>
+        :
+        <Routes>
+          <Route path='/' element={<Home themeParks={themeParks} />} />
+          <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
+          <Route path='/signup' element={<Signup />} />
+          {/* <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} /> */}
+        </Routes>
+      }
+    </div>
+  );
 }
 
 export default App;

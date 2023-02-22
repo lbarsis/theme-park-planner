@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 function Login({ onLogin }) {
   const navigate = useNavigate()
@@ -27,6 +27,7 @@ function Login({ onLogin }) {
         if (r.ok) {
           r.json().then(user => {
             onLogin(user)
+            navigate('/')
           })
         } else {
           r.json().then(err => {
@@ -35,10 +36,9 @@ function Login({ onLogin }) {
         }
       }
       )
-      navigate('/')
   }
 
-  const displayErrors = errors.map(e => <p key={e.indexOf(e)}>{e}</p>)
+  const displayErrors = errors.map(e => <p key={e.indexOf(e, e)}>{e}</p>)
 
   return (
     <div>

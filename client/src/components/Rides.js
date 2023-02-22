@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
-function Rides() {
+function Rides({ themeParks }) {
   return (
     <div>
       
