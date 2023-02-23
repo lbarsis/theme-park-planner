@@ -19,6 +19,7 @@ function Navbar({ user, onLogout }) {
         <div>
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/my-itineraries'>My-Itineraries</NavLink>
+          <NavLink to='/add-itinerary'>New</NavLink>
           {/* <NavLink to='/login'>Login</NavLink> */}
           {/* <NavLink to='/signup'>Signup</NavLink> */}
           <button onClick={handleLogout}>logout</button>

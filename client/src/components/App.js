@@ -5,6 +5,7 @@ import Home from './Home';
 import Signup from './Signup';
 import Login from './Login'
 import UserItineraries from './UserItineraries';
+import AddItineraryForm from './AddItineraryForm';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -25,18 +26,6 @@ function App() {
     });
   }, []);
 
-  // if (!currentUser) {
-  //   return (
-  //     <>
-  //       <Navbar />
-  //       <Login onLogin={setCurrentUser} />
-  //     </>
-  //   )
-  // }
-
-  // currentUser ? console.log(true) : console.log(false)
-
-
   return (
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
@@ -44,6 +33,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
           <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} />
+          <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks}/>} />
         </Routes>
         :
         <Routes>
