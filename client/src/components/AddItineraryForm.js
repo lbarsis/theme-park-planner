@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
+import Select from 'react-select'
 
 function AddItineraryForm({ user, themeParks }) {
   const [formData, setFormData] = useState({
     name: '',
-    themePark: '-',
-    rides: '-',
-    groupSize: '',
-    startDate: '',
-    endDate: '',
+    theme_park: '-',
+    ride_ids: [],
+    group_size: '',
+    start_date: '',
+    end_date: '',
   })
 
   function handleChange(e) {
@@ -17,30 +18,48 @@ function AddItineraryForm({ user, themeParks }) {
     })
   }
 
+  function handleRideChange(rides) {
+    setFormData({
+      ...formData,
+      ride_ids: rides.map(ride => ride.value)
+    })
+  }
+
+  console.log(formData.ride_ids)
+
   function handleSubmit(e) {
     e.preventDefault()
-    fetch('/login', {
+    fetch('/itineraries', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(formData)
+      body: JSON.stringify(
+        {
+          ...formData,
+          user_id: user.id
+        }
+      )
     })
       .then(r => {
         if (r.ok) {
           r.json().then(data => {
             // ....
+            console.log(data)
           })
         } else {
           r.json().then(err => {
             // ....
+            console.log(err)
           })
         }
       }
       )
   }
 
-  const themeParkOptions = themeParks.map(themePark => <option key={formData.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
-  const themeParkRides = formData.themePark !== '-' ? JSON.parse(formData.themePark).rides : null
-  const rideOptions = formData.themePark !== '-' ? themeParkRides.map(ride => <option value={ride.id}>{ride.name}</option>) : null
+  const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
+  const rideOptions = []
+  const options = formData.theme_park !== '-' ? JSON.parse(formData.theme_park).rides.map(ride => {
+    return [...rideOptions, {value: ride.id, label: ride.name}]
+  }) : []
 
   return (
     <div>
@@ -54,23 +73,34 @@ function AddItineraryForm({ user, themeParks }) {
         />
 
         <label>Theme Park</label>
-        <select name="themePark" id="themeParkOptions" onChange={handleChange} value={formData.themePark}>
+        <select name="theme_park" id="themeParkOptions" onChange={handleChange} value={formData.theme_park}>
           <option>-</option>
           {themeParkOptions}
         </select>
 
         <label>Rides</label>
-        <select name="themeParkRides" id="themeParkRideOptions" >
-          <option>-</option>
-          {rideOptions}
-        </select>
+        {
+          formData.theme_park !== '-' ?
+          <Select options={options.flat()} onChange={handleRideChange} isMulti />
+            // <select name="rides" id="themeParkRideOptions" onChange={handleChange} multiple>
+            //   <option>-</option>
+            //   {JSON.parse(formData.theme_park).rides.map(ride => {
+            //     return (
+            //   <option key={ride.id} value={ride.id}>{ride.name}</option>
+            //   )
+            //   })}
+
+            // </select>
+            :
+            <option>Please select a theme park</option>
+        }
 
         <label>Group Size</label>
         <input
           type="text"
-          name="groupSize"
+          name="group_size"
           onChange={handleChange}
-          value={formData.groupSize}
+          value={formData.group_size}
         />
 
         <button>submit</button>
