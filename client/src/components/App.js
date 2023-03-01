@@ -26,6 +26,13 @@ function App() {
     });
   }, []);
 
+  function handleAddNewItinerary(itinerary) {
+    setCurrentUser({
+      ...currentUser,
+      itineraries: [...currentUser.itineraries, itinerary]
+    })
+  }
+
   return (
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
@@ -33,7 +40,8 @@ function App() {
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
           <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} />
-          <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks}/>} />
+          <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} 
+          onAddItinerary={handleAddNewItinerary}/>} />
         </Routes>
         :
         <Routes>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select'
 
-function AddItineraryForm({ user, themeParks }) {
+function AddItineraryForm({ user, themeParks, onAddItinerary }) {
   const [formData, setFormData] = useState({
     name: '',
     theme_park: '-',
@@ -25,8 +25,6 @@ function AddItineraryForm({ user, themeParks }) {
     })
   }
 
-  console.log(formData.ride_ids)
-
   function handleSubmit(e) {
     e.preventDefault()
     fetch('/itineraries', {
@@ -41,9 +39,9 @@ function AddItineraryForm({ user, themeParks }) {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(data => {
+          r.json().then(itinerary => {
             // ....
-            console.log(data)
+            onAddItinerary(itinerary)
           })
         } else {
           r.json().then(err => {
