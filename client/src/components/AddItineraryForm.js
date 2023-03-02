@@ -71,7 +71,7 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
         />
 
         <label>Theme Park</label>
-        <select name="theme_park" id="themeParkOptions" onChange={handleChange} value={formData.theme_park}>
+        <select className=' css-13cymwt-control' name="theme_park" id="themeParkOptions" onChange={handleChange} value={formData.theme_park}>
           <option>-</option>
           {themeParkOptions}
         </select>
@@ -80,17 +80,8 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
         {
           formData.theme_park !== '-' ?
           <Select options={options.flat()} onChange={handleRideChange} isMulti />
-            // <select name="rides" id="themeParkRideOptions" onChange={handleChange} multiple>
-            //   <option>-</option>
-            //   {JSON.parse(formData.theme_park).rides.map(ride => {
-            //     return (
-            //   <option key={ride.id} value={ride.id}>{ride.name}</option>
-            //   )
-            //   })}
-
-            // </select>
             :
-            <option>Please select a theme park</option>
+            <option className=' css-13cymwt-control'>Please select a theme park</option>
         }
 
         <label>Group Size</label>

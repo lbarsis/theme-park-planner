@@ -1,8 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Home from './Home';
 
 function Navbar({ user, onLogout }) {
+  const navigate = useNavigate()
 
   function handleLogout() {
     fetch('logout', {
@@ -10,28 +11,28 @@ function Navbar({ user, onLogout }) {
     })
 
     onLogout(null)
-    return <Home />
+    navigate('/')
   }
 
   return (
     <div>
       {user ?
-        <div>
+        <nav>
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/my-itineraries'>My-Itineraries</NavLink>
           <NavLink to='/add-itinerary'>New</NavLink>
           {/* <NavLink to='/login'>Login</NavLink> */}
           {/* <NavLink to='/signup'>Signup</NavLink> */}
-          <button onClick={handleLogout}>logout</button>
-        </div>
+          <a onClick={handleLogout}>logout</a>
+        </nav>
         :
-        <div>
+        <nav>
           <NavLink to='/'>Home</NavLink>
           {/* <NavLink to='/my-itineraries'>My-Itineraries</NavLink> */}
           <NavLink to='/login'>Login</NavLink>
           <NavLink to='/signup'>Signup</NavLink>
           {/* <button onClick={handleLogout}>logout</button> */}
-        </div>
+        </nav>
       }
     </div>
   );
