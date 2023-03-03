@@ -10,6 +10,7 @@ import AddItineraryForm from './AddItineraryForm';
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [themeParks, setThemeParks] = useState([])
+  const [errors, setErrors] = useState(null)
 
   useEffect(() => {
     fetch('/theme_parks')
@@ -33,13 +34,21 @@ function App() {
     })
   }
 
+  function handleDeleteItinerary(deletedItineraryId) {
+    const newItinerariesList = currentUser.itineraries.filter(itinerary => itinerary.id !== deletedItineraryId)
+    setCurrentUser({
+      ...currentUser,
+      itineraries: newItinerariesList
+    })
+  }
+
   return (
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
       {currentUser ?
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
-          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} />
+          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} onDeleteItinerary={handleDeleteItinerary}/> } />
           <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} 
           onAddItinerary={handleAddNewItinerary}/>} />
         </Routes>

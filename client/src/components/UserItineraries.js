@@ -1,6 +1,6 @@
 import React from 'react';
 
-function UserItineraries({ user }) {
+function UserItineraries({ user, setErrors, onDeleteItinerary }) {
   const { itineraries } = user
 
   const displayItineraries = itineraries.map(itinerary => {
@@ -11,8 +11,16 @@ function UserItineraries({ user }) {
       fetch(`/itineraries/${id}`, {
         method: 'DELETE'
       })
-
-      console.log(id)
+        .then(r => {
+          if (r.ok) {
+            r.json().then(message => {
+              // alert(message.message)
+              onDeleteItinerary(id)
+            })
+          } else {
+            setErrors({ message: 'Itinerary Not Found' })
+          }
+        })
     }
 
     return (
