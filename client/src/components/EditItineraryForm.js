@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Select from 'react-select'
 
-function AddItineraryForm({ user, themeParks, onAddItinerary }) {
+function EditItineraryForm({ itinerary }) {
   const [formData, setFormData] = useState({
-    name: '',
-    theme_park: '-',
-    ride_ids: [],
-    group_size: '',
-    start_date: '',
-    end_date: ''
+    id: itinerary.id,
+    name: itinerary.name,
+    ride_ids: itinerary.rides,
+    group_size: itinerary.group_size,
+    start_date: itinerary.start_date,
+    end_date: itinerary.end_date
   })
 
   function handleChange(e) {
@@ -32,8 +32,7 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
         {
-          ...formData,
-          user_id: user.id
+          ...formData
         }
       )
     })
@@ -41,7 +40,7 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
         if (r.ok) {
           r.json().then(itinerary => {
             // ....
-            onAddItinerary(itinerary)
+            // onAddItinerary(itinerary)
           })
         } else {
           r.json().then(err => {
@@ -53,11 +52,13 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
       )
   }
 
-  const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
+  // const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
   const rideOptions = []
-  const options = formData.theme_park !== '-' ? JSON.parse(formData.theme_park).rides.map(ride => {
+  const options = formData.ride_ids.map(ride => {
     return [...rideOptions, { value: ride.id, label: ride.name }]
-  }) : []
+  }) 
+
+  console.log(itinerary.rides)
 
   return (
     <div>
@@ -86,12 +87,6 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
           value={formData.end_date}
         />
 
-        <label>Theme Park</label>
-        <select className=' css-13cymwt-control' name="theme_park" id="themeParkOptions" onChange={handleChange} value={formData.theme_park}>
-          <option>-</option>
-          {themeParkOptions}
-        </select>
-
         <label>Rides</label>
         {
           formData.theme_park !== '-' ?
@@ -113,4 +108,4 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
   );
 }
 
-export default AddItineraryForm;
+export default EditItineraryForm;
