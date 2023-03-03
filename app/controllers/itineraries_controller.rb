@@ -9,6 +9,12 @@ class ItinerariesController < ApplicationController
     render json: itinerary, status: :created
   end
 
+  def destroy
+    itinerary = @current_user.itineraries.find(params[:id])
+    itinerary.destroy
+    render json: {message: "Itinerary Deleted"}, head: :no_content
+  end
+
   private
 
   def itinerary_params

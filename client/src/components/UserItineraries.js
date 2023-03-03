@@ -4,9 +4,16 @@ function UserItineraries({ user }) {
   const { itineraries } = user
 
   const displayItineraries = itineraries.map(itinerary => {
-    const { rides } = itinerary
-
+    const { id, rides } = itinerary
     const displayRides = rides.map(ride => <p key={ride.id}>{ride.name}</p>)
+
+    function handleDelete() {
+      fetch(`/itineraries/${id}`, {
+        method: 'DELETE'
+      })
+
+      console.log(id)
+    }
 
     return (
       <div key={itinerary.id} className='card'>
@@ -15,7 +22,7 @@ function UserItineraries({ user }) {
           {displayRides}
         </div>
         <button>Edit</button>
-        <button>Delete</button>
+        <button onClick={handleDelete}>Delete</button>
       </div>
     )
   })
