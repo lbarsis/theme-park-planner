@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import Select from 'react-select'
 
-function EditItineraryForm({ itinerary }) {
+function EditItineraryForm({ itinerary, themeParks }) {
   const [formData, setFormData] = useState({
     id: itinerary.id,
     name: itinerary.name,
     ride_ids: itinerary.rides,
     group_size: itinerary.group_size,
+    theme_park: '-',
     start_date: itinerary.start_date,
     end_date: itinerary.end_date
   })
+
+  console.log(formData)
 
   function handleChange(e) {
     setFormData({
@@ -27,8 +30,8 @@ function EditItineraryForm({ itinerary }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch('/itineraries', {
-      method: 'POST',
+    fetch(`/itineraries/${itinerary.id}`, {
+      method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
         {
@@ -52,13 +55,12 @@ function EditItineraryForm({ itinerary }) {
       )
   }
 
-  // const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
+  const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
   const rideOptions = []
-  const options = formData.ride_ids.map(ride => {
-    return [...rideOptions, { value: ride.id, label: ride.name }]
-  }) 
 
-  console.log(itinerary.rides)
+  const options = formData.theme_park !== '-' ? JSON.parse(formData.theme_park).rides.map(ride => {
+    return [...rideOptions, { value: ride.id, label: ride.name }]
+  }) : []
 
   return (
     <div>
@@ -86,6 +88,13 @@ function EditItineraryForm({ itinerary }) {
           onChange={handleChange}
           value={formData.end_date}
         />
+
+        <label>Theme Park</label>
+        <select className=' css-13cymwt-control' name="theme_park" id="themeParkOptions" onChange={handleChange} value={formData.theme_park}>
+          <option>-</option>
+          {themeParkOptions}
+        </select>
+
 
         <label>Rides</label>
         {

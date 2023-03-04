@@ -48,16 +48,14 @@ function App() {
       {currentUser ?
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
-          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} onDeleteItinerary={handleDeleteItinerary}/> } />
-          <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} 
-          onAddItinerary={handleAddNewItinerary}/>} />
+          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} />} />
+          <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
         </Routes>
         :
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
           <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
           <Route path='/signup' element={<Signup />} />
-          {/* <Route path='/my-itineraries' element={<UserItineraries user={currentUser} />} /> */}
         </Routes>
       }
     </div>
