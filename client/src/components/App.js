@@ -54,7 +54,6 @@ function App() {
       ...currentUser,
       itineraries: updatedItineraries
     })
-    console.log(updatedItinerary)
   }
 
   return (
