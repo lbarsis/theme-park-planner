@@ -51,6 +51,14 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
         }
       }
       )
+      setFormData({
+        name: '',
+        theme_park: '-',
+        ride_ids: [],
+        group_size: '',
+        start_date: '',
+        end_date: ''
+      })
   }
 
   const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)

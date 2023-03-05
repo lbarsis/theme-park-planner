@@ -26,6 +26,10 @@ function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEdit
     })
   }
 
+  function handleCancelClick() {
+    setIsEditing(false)
+  }
+
   function handleSubmit(e) {
     const {name, group_size, start_date, end_date, ride_ids } = formData
 
@@ -116,7 +120,8 @@ function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEdit
           onChange={handleChange}
           value={formData.group_size}
         />
-        <button>submit</button>
+        <button>Submit</button>
+        <button onClick={handleCancelClick}>Cancel</button>
       </form>
     </div>
   );

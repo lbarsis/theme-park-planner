@@ -27,10 +27,11 @@ function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks, on
   }
 
   return (
-    isEditing ? 
+    <div key={itinerary.id} className='card'>    
+    {isEditing ? 
     <EditItineraryForm itinerary={itinerary} themeParks={themeParks} onUpdateItinerary={onUpdateItinerary} setIsEditing={setIsEditing}/>
     :
-    <div key={itinerary.id} className='card'>
+    <>
       <h2>{itinerary.name}</h2>
       <div className='container'>
         <p>start: {start_date} end: {end_date}</p>
@@ -38,6 +39,8 @@ function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks, on
       </div>
       <button onClick={editClick}>Edit</button>
       <button onClick={handleDelete}>Delete</button>
+      </>
+    }
     </div>
   )
 
