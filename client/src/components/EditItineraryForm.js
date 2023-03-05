@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Select from 'react-select'
 
-function EditItineraryForm({ itinerary, themeParks }) {
+function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEditing }) {
   const [formData, setFormData] = useState({
     id: itinerary.id,
     name: itinerary.name,
@@ -11,8 +11,6 @@ function EditItineraryForm({ itinerary, themeParks }) {
     start_date: itinerary.start_date,
     end_date: itinerary.end_date
   })
-
-  console.log(formData)
 
   function handleChange(e) {
     setFormData({
@@ -29,13 +27,19 @@ function EditItineraryForm({ itinerary, themeParks }) {
   }
 
   function handleSubmit(e) {
+    const {name, group_size, start_date, end_date, ride_ids } = formData
+
     e.preventDefault()
     fetch(`/itineraries/${itinerary.id}`, {
       method: 'PATCH',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
         {
-          ...formData
+          name: name,
+          group_size: group_size,
+          start_date: start_date,
+          end_date: end_date,
+          ride_ids: ride_ids
         }
       )
     })
@@ -43,7 +47,7 @@ function EditItineraryForm({ itinerary, themeParks }) {
         if (r.ok) {
           r.json().then(itinerary => {
             // ....
-            // onAddItinerary(itinerary)
+            onUpdateItinerary(itinerary)
           })
         } else {
           r.json().then(err => {
@@ -53,6 +57,7 @@ function EditItineraryForm({ itinerary, themeParks }) {
         }
       }
       )
+      setIsEditing(false)
   }
 
   const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)

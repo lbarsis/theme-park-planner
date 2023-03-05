@@ -42,13 +42,28 @@ function App() {
     })
   }
 
+  function handleUpdateItinerary(updatedItinerary) {
+    const updatedItineraries = currentUser.itineraries.map(itinerary => {
+      if (itinerary.id === updatedItinerary.id) {
+        return updatedItinerary
+      }else {
+        return itinerary
+      }
+    })
+    setCurrentUser({
+      ...currentUser,
+      itineraries: updatedItineraries
+    })
+    console.log(updatedItinerary)
+  }
+
   return (
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
       {currentUser ?
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
-          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} />} />
+          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
           <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
         </Routes>
         :

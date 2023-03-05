@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import EditItineraryForm from './EditItineraryForm';
 
-function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks }) {
+function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks, onUpdateItinerary }) {
   const [isEditing, setIsEditing] = useState(false)
   const { id, rides, start_date, end_date } = itinerary
   const displayRides = rides.map(ride => <p key={ride.id}>{ride.name}</p>)
@@ -28,7 +28,7 @@ function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks }) 
 
   return (
     isEditing ? 
-    <EditItineraryForm itinerary={itinerary} themeParks={themeParks}/>
+    <EditItineraryForm itinerary={itinerary} themeParks={themeParks} onUpdateItinerary={onUpdateItinerary} setIsEditing={setIsEditing}/>
     :
     <div key={itinerary.id} className='card'>
       <h2>{itinerary.name}</h2>
