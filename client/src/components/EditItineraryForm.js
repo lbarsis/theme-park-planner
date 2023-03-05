@@ -5,9 +5,9 @@ function EditItineraryForm({ itinerary, themeParks }) {
   const [formData, setFormData] = useState({
     id: itinerary.id,
     name: itinerary.name,
-    ride_ids: itinerary.rides,
+    ride_ids: itinerary.rides.map(ride => JSON.parse(JSON.stringify({ value: ride.id, label: ride.name }))),
     group_size: itinerary.group_size,
-    theme_park: '-',
+    theme_park: JSON.stringify(themeParks.filter(themePark => itinerary.theme_park.id === themePark.id)[0]),
     start_date: itinerary.start_date,
     end_date: itinerary.end_date
   })
@@ -99,7 +99,7 @@ function EditItineraryForm({ itinerary, themeParks }) {
         <label>Rides</label>
         {
           formData.theme_park !== '-' ?
-            <Select options={options.flat()} onChange={handleRideChange} isMulti />
+            <Select options={options.flat()} onChange={handleRideChange} isMulti defaultValue={formData.ride_ids}/>
             :
             <option className=' css-13cymwt-control'>Please select a theme park</option>
         }
