@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select'
+// import { useNavigate } from 'react-router-dom';
 
 function AddItineraryForm({ user, themeParks, onAddItinerary }) {
+  // const navigate = useNavigate()
   const [itineraryErrors, setItineraryErrors] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -28,13 +30,19 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
   }
 
   function handleSubmit(e) {
+    const { name, group_size, start_date, end_date, ride_ids } = formData
+
     e.preventDefault()
     fetch('/itineraries', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(
         {
-          ...formData,
+          name: name,
+          group_size: group_size,
+          start_date: start_date,
+          end_date: end_date,
+          ride_ids: ride_ids,
           user_id: user.id
         }
       )
@@ -44,6 +52,8 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
           r.json().then(itinerary => {
             // ....
             onAddItinerary(itinerary)
+            setItineraryErrors(null)
+            // navigate('/')
           })
         } else {
           r.json().then(err => {
@@ -117,12 +127,13 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
           value={formData.group_size}
         />
         <button>submit</button>
+        {itineraryErrors ?
+          itineraryErrors.errors.map(error => <p key={uuidv4()}>{error}</p>)
+          :
+          null
+        }
       </form>
-      {itineraryErrors ?
-        itineraryErrors.errors.map(error => <p key={uuidv4()}>{error}</p>)
-        :
-        null
-      }
+
     </div>
   );
 }
