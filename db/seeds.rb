@@ -16,8 +16,8 @@ hulk = Ride.create(name: "The Incredible Hulk Coaster", thrill_level: 5, duratio
 rip_ride = Ride.create(name: "Hollywood Rip Ride Rockit", thrill_level: 4, duration: 3, capacity: 24, description: "Blast off on a high-speed journey that loops, twists and dives around the park.", theme_park: universal_orlando)
 
 # create users
-alice = User.create(name: "Alice", username: 'a1', email: "alice@example.com", password: "password")
-bob = User.create(name: "Bob", username: 'b1',email: "bob@example.com", password: "password")
+alice = User.create(name: "Alice", username: 'al1', email: "alice@example.com", password: "password")
+bob = User.create(name: "Bob", username: 'bo1',email: "bob@example.com", password: "password")
 
 # create itineraries
 itinerary1 = Itinerary.create(name: "Disney Vacation", group_size: 2, start_date: Date.new(2023, 3, 20), end_date: Date.new(2023, 3, 26), user: alice)

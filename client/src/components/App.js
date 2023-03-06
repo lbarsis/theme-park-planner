@@ -23,6 +23,8 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setCurrentUser(user));
+      } else{
+        r.json().then(errors => setErrors(errors))
       }
     });
   }, []);
@@ -69,7 +71,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
           <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
-          <Route path='/signup' element={<Signup />} />
+          <Route path='/signup' element={<Signup onLogin={setCurrentUser}/>} />
         </Routes>
       }
     </div>

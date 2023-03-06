@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select'
 
 function AddItineraryForm({ user, themeParks, onAddItinerary }) {
+  const [itineraryErrors, setItineraryErrors] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
     theme_park: '-',
@@ -45,20 +47,19 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
           })
         } else {
           r.json().then(err => {
-            // ....
-            console.log(err)
+            setItineraryErrors(err)
           })
         }
       }
       )
-      setFormData({
-        name: '',
-        theme_park: '-',
-        ride_ids: [],
-        group_size: '',
-        start_date: '',
-        end_date: ''
-      })
+    setFormData({
+      name: '',
+      theme_park: '-',
+      ride_ids: [],
+      group_size: '',
+      start_date: '',
+      end_date: ''
+    })
   }
 
   const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
@@ -117,6 +118,11 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
         />
         <button>submit</button>
       </form>
+      {itineraryErrors ?
+        itineraryErrors.errors.map(error => <p key={uuidv4()}>{error}</p>)
+        :
+        null
+      }
     </div>
   );
 }

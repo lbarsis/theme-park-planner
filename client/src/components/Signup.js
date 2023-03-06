@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-// import {Label, Input} from '../styles';
-// import {Input} from '../styles/Input';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom'
 
-function Signup() {
+
+function Signup({ onLogin }) {
+  const navigate = useNavigate()
+  const [signupErrors, setSignupErrors] =useState(null)
   const [formData, setFormData] = useState({
     name: '',
     username: '',
@@ -23,6 +26,17 @@ function Signup() {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
+    })
+    .then( r => {
+      if (r.ok) {
+        r.json().then(user => {
+          onLogin(user)
+          setSignupErrors(null)
+          navigate('/')
+        })
+      } else {
+        r.json().then(error => setSignupErrors(error))
+      }
     })
   }
 
@@ -63,6 +77,11 @@ function Signup() {
 
         <button>Submit</button>
       </form>
+      {signupErrors ? 
+        signupErrors.errors.map(error => <p key={uuidv4()}>{error}</p>)
+      :
+        null
+    }
     </div>
   );
 }
