@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select'
 
 function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEditing }) {
+  const [formErrors, setFormErrors] = useState(null)
   const [formData, setFormData] = useState({
     id: itinerary.id,
     name: itinerary.name,
@@ -56,7 +58,7 @@ function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEdit
         } else {
           r.json().then(err => {
             // ....
-            console.log(err)
+            setFormErrors(err)
           })
         }
       }
@@ -123,6 +125,11 @@ function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEdit
         <button>Submit</button>
         <button onClick={handleCancelClick}>Cancel</button>
       </form>
+      {formErrors ?
+        formErrors.errors.map(error => <p key={uuidv4()}>{error}</p>)
+      :
+        null
+    }
     </div>
   );
 }
