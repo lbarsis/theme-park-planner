@@ -6,11 +6,24 @@ import Signup from './Signup';
 import Login from './Login'
 import UserItineraries from './UserItineraries';
 import AddItineraryForm from './AddItineraryForm';
+import Users from './Users';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [themeParks, setThemeParks] = useState([])
   const [errors, setErrors] = useState(null)
+  const [users, setUsers] = useState([])
+  const [userErrors, setUserErrors] = useState(null)
+
+  useEffect(() => {
+    fetch('/users').then(r => {
+      if (r.ok) {
+        r.json().then(users => setUsers(users))
+      } else {
+        r.json().then(errors => setUserErrors(errors))
+      }
+    })
+  }, [])
 
   useEffect(() => {
     fetch('/theme_parks')
@@ -23,7 +36,7 @@ function App() {
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setCurrentUser(user));
-      } else{
+      } else {
         r.json().then(errors => setErrors(errors))
       }
     });
@@ -48,7 +61,7 @@ function App() {
     const updatedItineraries = currentUser.itineraries.map(itinerary => {
       if (itinerary.id === updatedItinerary.id) {
         return updatedItinerary
-      }else {
+      } else {
         return itinerary
       }
     })
@@ -58,6 +71,8 @@ function App() {
     })
   }
 
+  // console.log(currentUser)
+
   return (
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
@@ -66,12 +81,18 @@ function App() {
           <Route path='/' element={<Home themeParks={themeParks} />} />
           <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
           <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
+          {
+            currentUser.admin ?
+              <Route path='/users' element={<Users users={users} />} />
+              :
+              null
+          }
         </Routes>
         :
         <Routes>
           <Route path='/' element={<Home themeParks={themeParks} />} />
           <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
-          <Route path='/signup' element={<Signup onLogin={setCurrentUser}/>} />
+          <Route path='/signup' element={<Signup onLogin={setCurrentUser} />} />
         </Routes>
       }
     </div>

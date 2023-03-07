@@ -20,6 +20,12 @@ function Navbar({ user, onLogout }) {
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/my-itineraries'>My-Itineraries</NavLink>
           <NavLink to='/add-itinerary'>New</NavLink>
+          {
+            user.admin ?
+              <NavLink to='/users'>Users</NavLink>
+              :
+              null
+          }
           {/* <NavLink to='/login'>Login</NavLink> */}
           {/* <NavLink to='/signup'>Signup</NavLink> */}
           <a href='/' onClick={handleLogout}>logout</a>
