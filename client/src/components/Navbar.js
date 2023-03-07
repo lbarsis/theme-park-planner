@@ -1,6 +1,5 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
-import Home from './Home';
 
 function Navbar({ user, onLogout }) {
   const navigate = useNavigate()
@@ -23,7 +22,7 @@ function Navbar({ user, onLogout }) {
           <NavLink to='/add-itinerary'>New</NavLink>
           {/* <NavLink to='/login'>Login</NavLink> */}
           {/* <NavLink to='/signup'>Signup</NavLink> */}
-          <a onClick={handleLogout}>logout</a>
+          <a href='/' onClick={handleLogout}>logout</a>
         </nav>
         :
         <nav>
