@@ -12,9 +12,15 @@ function UserItem({ user }) {
         admin: !isAdmin
       })
     })
+    .then(r => {
+      if (r.ok) {
+        r.json().then(user => console.log(user))
+      } else {
+        r.json().then(errors => console.log(errors))
+      }
+    })
 
     setIsAdmin(admin => !admin)
-
   }
 
   return (

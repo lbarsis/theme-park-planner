@@ -1,21 +1,19 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import UserItem from './UserItem';
 
-function Users({currentUser}) {
+function Users({ currentUser }) {
   const [userErrors, setUserErrors] = useState(null)
   const [users, setUsers] = useState([])
 
   useEffect(() => {
-    if (currentUser?.admin) {
-      fetch('/users').then(r => {
-        if (r.ok) {
-          r.json().then(users => setUsers(users))
-        } else {
-          r.json().then(errors => setUserErrors(errors))
-        }
-      })
-    } else {
-    }
+    fetch('/users').then(r => {
+      if (r.ok) {
+        r.json().then(users => setUsers(users))
+      } else {
+        r.json().then(errors => setUserErrors(errors))
+      }
+    })
+
   }, [])
 
   const displayUsers = users.map(user => {
