@@ -53,8 +53,8 @@ rip_ride = Ride.create(name: "Hollywood Rip Ride Rockit", thrill_level: 4, durat
 
 # create users
 admin = User.create(name: "Admin User", username: "admin", email: "admin@example.com", password: "password", admin: true)
-user1 = User.create(name: "John Smith", username: "johnsmith", email: "john@example.com", password: "password")
-user2 = User.create(name: "Jane Doe", username: "janedoe", email: "jane@example.com", password: "password")
+user1 = User.create(name: "John Smith", username: "johnsmith", email: "john@example.com", password: "password", admin: false)
+user2 = User.create(name: "Jane Doe", username: "janedoe", email: "jane@example.com", password: "password", admin:false)
 
 # create itineraries
 itinerary1 = Itinerary.create(name: "Magical Vacation", group_size: 4, start_date: Date.today + 1, end_date: Date.today + 7, user: user1, rides:[pirates_of_caribbean, haunted_mansion, space_mountain])

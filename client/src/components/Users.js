@@ -1,8 +1,11 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import UserItem from './UserItem';
 
-function Users({users}) {
+function Users({ users }) {
 
-  const displayUsers = users.map(user => <p key={user.id}>{user.username}</p>)
+  const displayUsers = users.map(user => {
+    return <UserItem key={user.id} user={user} />
+  })
 
   return (
     <div>

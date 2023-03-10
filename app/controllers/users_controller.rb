@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :require_admin, only: :index
-  skip_before_action :authorize, only: :create
+  before_action :require_admin, only: [:index, :update]
+  skip_before_action :authorize, only: [:create, :update]
 
   def index
     users = User.all
@@ -13,6 +13,14 @@ class UsersController < ApplicationController
     render json: user, status: :created
   end
 
+  def update
+    user = User.find(params[:id])
+    user.update!(user_params)
+    user.save(:validate => false)
+    render json: user, status: :ok
+    # byebug
+  end
+
   def show
     render json: @current_user
   end
@@ -20,6 +28,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.permit(:name, :username, :email, :password)
+    params.permit( :id, :name, :username, :email, :password, :admin)
   end
 end
