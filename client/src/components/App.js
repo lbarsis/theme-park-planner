@@ -8,6 +8,7 @@ import UserItineraries from './UserItineraries';
 import AddItineraryForm from './AddItineraryForm';
 import Users from './Users';
 import AddThemePark from './AddThemePark';
+import AddRide from './AddRide';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -115,18 +116,17 @@ function App() {
 
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
-
       <Routes>
         <Route path='/' element={<Home themeParks={themeParks} />} />
         <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
         <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
         <Route path='/add-theme-park' element={<AddThemePark />}/>
+        <Route path='/add-ride' element={<AddRide themeParks={themeParks}/>} />
         <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
         <Route path='/signup' element={<Signup onLogin={setCurrentUser} />} />
         <Route path='/users' element={<Users currentUser={currentUser} />} />
       </Routes>
     </div>
-
   );
 }
 

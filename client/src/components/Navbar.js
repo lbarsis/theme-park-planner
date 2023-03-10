@@ -25,6 +25,7 @@ function Navbar({ user, onLogout }) {
               <>
                 <NavLink to='/users'>Users</NavLink>
                 <NavLink to='/add-theme-park'>Add Theme Park</NavLink>
+                <NavLink to='/add-ride'>Add Ride</NavLink>
               </>
               :
               null
