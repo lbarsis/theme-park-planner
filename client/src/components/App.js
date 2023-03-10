@@ -7,6 +7,7 @@ import Login from './Login'
 import UserItineraries from './UserItineraries';
 import AddItineraryForm from './AddItineraryForm';
 import Users from './Users';
+import AddThemePark from './AddThemePark';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -119,6 +120,7 @@ function App() {
         <Route path='/' element={<Home themeParks={themeParks} />} />
         <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
         <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
+        <Route path='/add-theme-park' element={<AddThemePark />}/>
         <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
         <Route path='/signup' element={<Signup onLogin={setCurrentUser} />} />
         <Route path='/users' element={<Users currentUser={currentUser} />} />
