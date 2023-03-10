@@ -12,18 +12,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null)
   const [themeParks, setThemeParks] = useState([])
   const [errors, setErrors] = useState(null)
-  const [users, setUsers] = useState([])
-  const [userErrors, setUserErrors] = useState(null)
-
-  useEffect(() => {
-    fetch('/users').then(r => {
-      if (r.ok) {
-        r.json().then(users => setUsers(users))
-      } else {
-        r.json().then(errors => setUserErrors(errors))
-      }
-    })
-  }, [])
 
   useEffect(() => {
     fetch('/theme_parks')
@@ -41,6 +29,7 @@ function App() {
       }
     });
   }, []);
+
 
   function handleAddNewItinerary(itinerary) {
     setCurrentUser({
@@ -74,28 +63,57 @@ function App() {
   // console.log(currentUser)
 
   return (
+    // <div className="App">
+    //   <Navbar user={currentUser} onLogout={setCurrentUser} />
+    //   {currentUser ?
+    //     <Routes>
+    //       <Route path='/' element={<Home themeParks={themeParks} />} />
+    //       <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
+    //       <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
+    //       {
+    //         currentUser.admin ?
+    //           <Route path='/users' element={<Users currentUser={currentUser} />} />
+    //           :
+    //           null
+    //       }
+    //     </Routes>
+    //     :
+    //     <Routes>
+    //       <Route path='/' element={<Home themeParks={themeParks} />} />
+    //       <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
+    //       <Route path='/signup' element={<Signup onLogin={setCurrentUser} />} />
+    //     </Routes>
+    //   }
+    // </div>
+
+
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
-      {currentUser ?
-        <Routes>
-          <Route path='/' element={<Home themeParks={themeParks} />} />
-          <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
-          <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
-          {
-            currentUser.admin ?
-              <Route path='/users' element={<Users users={users} />} />
-              :
-              null
-          }
-        </Routes>
-        :
-        <Routes>
-          <Route path='/' element={<Home themeParks={themeParks} />} />
-          <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
-          <Route path='/signup' element={<Signup onLogin={setCurrentUser} />} />
-        </Routes>
-      }
+
+      <Routes>
+        <Route path='/' element={<Home themeParks={themeParks} />} />
+        
+        {currentUser ?
+          <>
+            <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
+            <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
+          </>
+          :
+          <>
+            <Route path='/login' element={<Login onLogin={setCurrentUser} />} />
+            <Route path='/signup' element={<Signup onLogin={setCurrentUser} />} />
+          </>
+        }
+
+        {
+          currentUser?.admin ?
+            <Route path='/users' element={<Users currentUser={currentUser} />} />
+            :
+            null
+        }
+      </Routes>
     </div>
+
   );
 }
 
