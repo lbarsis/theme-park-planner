@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './Navbar';
-import Home from './Home';
+import Home from './themeParks/Home';
 import Signup from './Signup';
 import Login from './Login'
 import UserItineraries from './users/UserItineraries';
