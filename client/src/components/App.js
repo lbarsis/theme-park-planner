@@ -4,11 +4,11 @@ import Navbar from './Navbar';
 import Home from './Home';
 import Signup from './Signup';
 import Login from './Login'
-import UserItineraries from './UserItineraries';
-import AddItineraryForm from './AddItineraryForm';
-import Users from './Users';
-import AddThemePark from './AddThemePark';
-import AddRide from './AddRide';
+import UserItineraries from './users/UserItineraries';
+import AddItineraryForm from './itineraries/AddItineraryForm';
+import Users from './users/Users';
+import AddThemePark from './themeParks/AddThemePark';
+import AddRide from './rides/AddRide';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null)
@@ -75,8 +75,6 @@ function App() {
       newThemePark
     ])
   }
-
-  console.log(themeParks)
 
   function handleAddRideToThemePark(newRide) {
     const updatedThemeParks = themeParks.map(themePark => {

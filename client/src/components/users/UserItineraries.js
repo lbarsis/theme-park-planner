@@ -1,5 +1,5 @@
 import React from 'react';
-import ItineraryItem from './ItineraryItem';
+import ItineraryItem from '../itineraries/ItineraryItem';
 
 function UserItineraries({ user, setErrors, onDeleteItinerary, themeParks, onUpdateItinerary }) {
   const { itineraries } = user
