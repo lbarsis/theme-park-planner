@@ -1,11 +1,11 @@
 import ThemeParkCard from './ThemeParkCard'
 
-function Home({themeParks}) {
+function Home({themeParks, onDeleteThemePark}) {
 
   const displayThemeParks = themeParks.map(themePark => {
     return (
       // <h1 key={themePark.id}>{themePark.name}</h1>
-      <ThemeParkCard key={themePark.id} themePark={themePark}/>
+      <ThemeParkCard key={themePark.id} themePark={themePark} onDeleteThemePark={onDeleteThemePark}/>
     )
   })
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ThemeParkCard({ themePark }) {
+function ThemeParkCard({ themePark, onDeleteThemePark }) {
 
   const displayRides = themePark.rides.map(ride => {
     return (
@@ -16,7 +16,7 @@ function ThemeParkCard({ themePark }) {
     })
     .then(r => {
       if (r.ok) {
-        r.json().then(deletedThemePark => console.log('Deleted!'))
+        r.json().then(() => onDeleteThemePark(themePark))
       } else {
         r.json().then(error => console.log(error))
       }

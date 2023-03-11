@@ -91,11 +91,16 @@ function App() {
     setThemeParks(updatedThemeParks)
   }
 
+  function handleDeleteThemePark(deletedThemePark) {
+    const displayThemeParks = themeParks.filter(themePark => themePark.id !== deletedThemePark.id)
+    setThemeParks(displayThemeParks)
+  }
+
   return (
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
       <Routes>
-        <Route path='/' element={<Home themeParks={themeParks} />} />
+        <Route path='/' element={<Home themeParks={themeParks} onDeleteThemePark={handleDeleteThemePark}/>} />
         <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
         <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
         <Route path='/add-theme-park' element={<AddThemePark onAddThemePark={handleAddThemePark}/>}/>
