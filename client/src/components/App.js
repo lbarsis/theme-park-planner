@@ -88,7 +88,7 @@ function App() {
         return themePark
       }
     })
-    console.log(updatedThemeParks)
+    setThemeParks(updatedThemeParks)
   }
 
   return (
