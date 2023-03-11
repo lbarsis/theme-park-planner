@@ -100,7 +100,7 @@ function App() {
     <div className="App">
       <Navbar user={currentUser} onLogout={setCurrentUser} />
       <Routes>
-        <Route path='/' element={<Home themeParks={themeParks} onDeleteThemePark={handleDeleteThemePark}/>} />
+        <Route path='/' element={<Home themeParks={themeParks} onDeleteThemePark={handleDeleteThemePark} user={currentUser}/>} />
         <Route path='/my-itineraries' element={<UserItineraries user={currentUser} setErrors={setErrors} themeParks={themeParks} onDeleteItinerary={handleDeleteItinerary} onUpdateItinerary={handleUpdateItinerary} />} />
         <Route path='/add-itinerary' element={<AddItineraryForm user={currentUser} themeParks={themeParks} onAddItinerary={handleAddNewItinerary} />} />
         <Route path='/add-theme-park' element={<AddThemePark onAddThemePark={handleAddThemePark}/>}/>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function ThemeParkCard({ themePark, onDeleteThemePark }) {
+function ThemeParkCard({ themePark, onDeleteThemePark, user }) {
 
   const displayRides = themePark.rides.map(ride => {
     return (
@@ -14,13 +14,13 @@ function ThemeParkCard({ themePark, onDeleteThemePark }) {
     fetch(`/theme_parks/${themePark.id}`, {
       method: 'DELETE'
     })
-    .then(r => {
-      if (r.ok) {
-        r.json().then(() => onDeleteThemePark(themePark))
-      } else {
-        r.json().then(error => console.log(error))
-      }
-    })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(() => onDeleteThemePark(themePark))
+        } else {
+          r.json().then(error => console.log(error))
+        }
+      })
   }
 
   return (
@@ -35,8 +35,12 @@ function ThemeParkCard({ themePark, onDeleteThemePark }) {
       <div className='ride-container' >
         {displayRides}
       </div>
-      
-      <button onClick={deleteThemePark}>Delete</button>
+      {
+        user?.admin ?
+          <button onClick={deleteThemePark}>Delete</button>
+          :
+          null
+      }
     </div>
   );
 }
