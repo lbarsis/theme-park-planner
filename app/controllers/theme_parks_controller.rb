@@ -1,5 +1,5 @@
 class ThemeParksController < ApplicationController
-  before_action :require_admin, only: :create
+  before_action :require_admin, only: [:create, :destroy]
   skip_before_action :authorize, only: :index
   
   def index
@@ -10,6 +10,13 @@ class ThemeParksController < ApplicationController
   def create
     theme_park = ThemePark.create!(theme_park_params)
     render json: theme_park, status: :created
+  end
+
+  def destroy
+    # byebug
+    theme_park = ThemePark.find(params[:id])
+    theme_park.destroy
+    render json: {message: "Itinerary Deleted"}, head: :no_content
   end
 
   private

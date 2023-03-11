@@ -56,7 +56,6 @@ a.active {
   position: absolute;
   bottom: 0;
   left: 0;
-
 }
 
 img {
@@ -166,6 +165,20 @@ input[type=submit] {
     justify-content: center;
     position: relative;
 }
+
+.theme-park-card p {
+  font-size: small;
+  font-style: italic;
+  font-weight: lighter;
+  margin-top: 0;
+}
+
+.theme-park-card button {
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+}
+
 
 h1, h2 {
   text-align: center;
