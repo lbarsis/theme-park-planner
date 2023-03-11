@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom'
 
-function AddThemePark() {
+function AddThemePark({ onAddThemePark }) {
+  const navigateHome = useNavigate()
+  const [themeParkErrors, setThemeParkErrors] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
     city: '',
@@ -22,6 +26,16 @@ function AddThemePark() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(formData)
     })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(newThemePark => {
+            onAddThemePark(newThemePark)
+            navigateHome('/')
+          })
+        } else {
+          r.json().then(errors => setThemeParkErrors(errors))
+        }
+      })
   }
 
   return (
@@ -60,6 +74,12 @@ function AddThemePark() {
         />
 
         <button>submit</button>
+        {
+          themeParkErrors ?
+            themeParkErrors.errors.map(error => <p key={uuidv4()}>{error}</p>)
+            :
+            null
+        }
       </form>
 
     </div>

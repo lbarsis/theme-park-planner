@@ -19,7 +19,7 @@ function Navbar({ user, onLogout }) {
         <nav>
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/my-itineraries'>My-Itineraries</NavLink>
-          <NavLink to='/add-itinerary'>New</NavLink>
+          <NavLink to='/add-itinerary'>New Itinerary</NavLink>
           {
             user.admin ?
               <>

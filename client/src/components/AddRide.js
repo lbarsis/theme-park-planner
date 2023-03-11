@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
 
-function AddRide({themeParks}) {
+function AddRide({ themeParks, onAddRide }) {
+  const navigateHome = useNavigate()
+  const [rideErrors, setRideErrors] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
     thrill_level: 1,
     duration: '',
     capacity: 1,
-    description: ''
+    description: '',
+    theme_park_id: {value: '', label: '-'}
   })
 
   const options = themeParks.map(themePark => {
-    return {value: themePark.id, label: themePark.name}
+    return { value: themePark.id, label: themePark.name }
   })
 
   function handleChange(e) {
@@ -31,6 +36,16 @@ function AddRide({themeParks}) {
         theme_park_id: formData.theme_park_id.value
       })
     })
+      .then(r => {
+        if (r.ok) {
+          r.json().then(newRide => {
+            onAddRide(newRide)
+            navigateHome('/')
+          })
+        } else {
+          r.json().then(errors => setRideErrors(errors))
+        }
+      })
   }
 
 
@@ -78,9 +93,17 @@ function AddRide({themeParks}) {
         />
 
         <label>theme_park_id</label>
-        <Select options={options} onChange={theme_park_id => setFormData({...formData, theme_park_id})}/>
+        <Select options={options} onChange={theme_park_id => setFormData({ ...formData, theme_park_id })} />
 
         <button>submit</button>
+
+        {
+          rideErrors ?
+            rideErrors.errors.map(error => <p key={uuidv4()}>{error}</p>)
+            :
+            null
+        }
+
       </form>
     </div>
   );

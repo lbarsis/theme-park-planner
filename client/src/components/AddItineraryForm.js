@@ -10,7 +10,7 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
     name: '',
     theme_park: '-',
     ride_ids: [],
-    group_size: '',
+    group_size: 1,
     start_date: '',
     end_date: ''
   })
@@ -50,10 +50,8 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
       .then(r => {
         if (r.ok) {
           r.json().then(itinerary => {
-            // ....
             onAddItinerary(itinerary)
             setItineraryErrors(null)
-            // navigate('/')
             setFormData({
               name: '',
               theme_park: '-',
@@ -133,7 +131,6 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
           null
         }
       </form>
-
     </div>
   );
 }
