@@ -39,7 +39,6 @@ function App() {
     });
   }, []);
 
-
   function handleAddNewItinerary(itinerary) {
     setCurrentUser({
       ...currentUser,

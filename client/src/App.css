@@ -1,7 +1,9 @@
 nav {
   border: none;
-  background-color: #333;
+  background-color: #264653;
   overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 /* Style the links inside the navigation bar */
@@ -12,6 +14,7 @@ a {
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
+  border-bottom: 5px solid #2a9d8f;
 }
 
 /* Change the color of links on hover */
@@ -23,8 +26,41 @@ a:hover {
 
 /* Add a color to the active/current link */
 a.active {
-  background-color: #04AA6D;
-  color: white;
+  background-color: #e9c46a;
+  color: black;
+  font-weight: bolder;
+  border-bottom: 5px solid #e76f51;
+}
+
+.ride-container {
+  text-align: center;
+  font-size: large;
+  margin: 15px 50px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px
+  /* overflow: scroll; */
+}
+
+.ride-container div {
+  border-radius: 20px;
+  margin: 2px;
+  box-shadow: 0 0 5px lightgray;
+  z-index: 1;
+  background: white;
+}
+
+.confetti-img {
+  transform: rotate(180deg);
+  width: 35%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+
+}
+
+img {
+  width: 100%;
 }
 
 /* Bordered form */
@@ -48,7 +84,7 @@ input {
 
 /* Set a style for all buttons */
 button {
-  background-color: #04AA6D;
+  background-color: #2a9d8f;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -82,21 +118,23 @@ input[type=submit] {
 
 
 .intineraries-container {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  margin: 25px;
+  /* justify-content: center; */
 }
 
 .card {
   /* Add shadows to create the "card" effect */
-  display: inline-block;
+  /* display: inline-block; */
   height: fit-content;
   vertical-align: top;
   min-height: 500px;
-  margin: 25px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px; /* 5px rounded corners */
-  width: 20%;
+  width: 100%;
   justify-content: center;
 }
 
@@ -111,6 +149,35 @@ input[type=submit] {
 /* On mouse-over, add a deeper shadow */
 .card:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.theme-park-card {
+    /* Add shadows to create the "card" effect */
+    /* display: inline-block; */
+    height: 500px;
+    vertical-align: top;
+    min-height: 500px;
+    margin: auto;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    border-radius: 5px; /* 5px rounded corners */
+    max-width: 750px;
+    justify-content: center;
+    position: relative;
+}
+
+h1, h2 {
+  text-align: center;
+  border-bottom: 5px solid #e76f51;
+  background-color: #e9c46a;
+  color: black;
+  text-shadow: 1px 1px 0px white;
+  padding: 25px;
+  margin: 0px;
+
+  /* -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: white; */
 }
 
 /* Add some padding inside the card container */
