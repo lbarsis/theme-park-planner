@@ -16,7 +16,7 @@ function Navbar({ user, onLogout }) {
   return (
     <div>
       {user ?
-        <nav className='navbar'>
+        <nav>
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/my-itineraries'>My-Itineraries</NavLink>
           <NavLink to='/add-itinerary'>New Itinerary</NavLink>
@@ -32,7 +32,7 @@ function Navbar({ user, onLogout }) {
           }
           {/* <NavLink to='/login'>Login</NavLink> */}
           {/* <NavLink to='/signup'>Signup</NavLink> */}
-          <button className='anchor-copy' onClick={handleLogout}>Logout</button>
+          <a href='/' onClick={handleLogout}>logout</a>
         </nav>
         :
         <nav>
