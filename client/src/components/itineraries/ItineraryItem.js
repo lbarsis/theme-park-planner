@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import EditItineraryForm from './EditItineraryForm';
 
 function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks, onUpdateItinerary }) {
@@ -27,20 +27,23 @@ function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks, on
   }
 
   return (
-    <div key={itinerary.id} className='card'>    
-    {isEditing ? 
-    <EditItineraryForm itinerary={itinerary} themeParks={themeParks} onUpdateItinerary={onUpdateItinerary} setIsEditing={setIsEditing}/>
-    :
-    <>
-      <h2>{itinerary.name}</h2>
-      <div className='container'>
-        <p>start: {start_date} end: {end_date}</p>
-        {displayRides}
-      </div>
-      <button onClick={editClick}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
-      </>
-    }
+    <div key={itinerary.id} className='card'>
+      {isEditing ?
+        <EditItineraryForm itinerary={itinerary} themeParks={themeParks} onUpdateItinerary={onUpdateItinerary} setIsEditing={setIsEditing} />
+        :
+        <>
+          <h2>
+            {itinerary.name}
+            <p>Start: {start_date}</p>
+            <p>End: {end_date}</p>
+          </h2>
+          <div className='container'>
+            {displayRides}
+          </div>
+          <button onClick={editClick}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+        </>
+      }
     </div>
   )
 
