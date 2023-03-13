@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 function AddItineraryForm({ user, themeParks, onAddItinerary }) {
-  // const navigate = useNavigate()
+  const navigate = useNavigate()
   const [itineraryErrors, setItineraryErrors] = useState(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -68,6 +68,7 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
         }
       }
       )
+      navigate('/my-itineraries')
   }
 
   const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)

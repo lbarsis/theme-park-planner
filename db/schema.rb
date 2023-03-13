@@ -11,23 +11,20 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_03_07_014916) do
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "itineraries", force: :cascade do |t|
     t.string "name"
     t.integer "group_size"
     t.date "start_date"
     t.date "end_date"
-    t.bigint "user_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_itineraries_on_user_id"
   end
 
   create_table "itinerary_rides", force: :cascade do |t|
-    t.bigint "itinerary_id", null: false
-    t.bigint "ride_id", null: false
+    t.integer "itinerary_id", null: false
+    t.integer "ride_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["itinerary_id"], name: "index_itinerary_rides_on_itinerary_id"
@@ -35,8 +32,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_014916) do
   end
 
   create_table "ride_users", force: :cascade do |t|
-    t.bigint "ride_id", null: false
-    t.bigint "user_id", null: false
+    t.integer "ride_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ride_id"], name: "index_ride_users_on_ride_id"
@@ -49,7 +46,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_07_014916) do
     t.integer "duration"
     t.integer "capacity"
     t.text "description"
-    t.bigint "theme_park_id", null: false
+    t.integer "theme_park_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["theme_park_id"], name: "index_rides_on_theme_park_id"
