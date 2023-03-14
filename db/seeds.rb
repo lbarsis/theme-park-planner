@@ -53,6 +53,7 @@ rip_ride = Ride.create(name: "Hollywood Rip Ride Rockit", thrill_level: 4, durat
 
 # create users
 admin = User.create(name: "Admin User", username: "admin", email: "admin@example.com", password: "password", admin: true)
+admin = User.create(name: "Levi Barsis", username: "lbarsis", email: "lbarsis@gmail.com", password: "Brokenglasses4!", admin: true)
 user1 = User.create(name: "John Smith", username: "johnsmith", email: "john@example.com", password: "password", admin: false)
 user2 = User.create(name: "Jane Doe", username: "janedoe", email: "jane@example.com", password: "password", admin:false)
 
