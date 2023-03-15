@@ -16,7 +16,6 @@ The purpose of this project is to allow users to plan their perfect trip to a th
 2. [Usage](#usage)
    - [Basic Usage](#basic-usage)
    - [Advanced Usage](#advanced-usage)
-   - [API Reference](#api-reference)
 3. [License](#license)
 
 ## Getting Started
