@@ -1,24 +1,86 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Theme Park Planner
 
-Things you may want to cover:
+![License](https://img.shields.io/badge/license-MIT-green)
+![Build Status](https://img.shields.io/travis/user/repo/master)
+![Contributions Welcome](https://img.shields.io/badge/contributions-welcome-orange.svg)
 
-* Ruby version
+The purpose of this project is to allow users to plan their perfect trip to a theme park of their choosing by creating an itinerary. 
 
-* System dependencies
+## Table of Contents
 
-* Configuration
+1. [Getting Started](#getting-started)
+   - [Prerequisites](#prerequisites)
+   - [Installation](#installation)
+2. [Usage](#usage)
+   - [Basic Usage](#basic-usage)
+   - [Advanced Usage](#advanced-usage)
+   - [API Reference](#api-reference)
+3. [Contributing](#contributing)
+4. [License](#license)
+5. [Acknowledgments](#acknowledgments)
 
-* Database creation
+## Getting Started
 
-* Database initialization
+These instructions will guide you through setting up the project and running it on your local machine for development and testing purposes.
 
-* How to run the test suite
+### Prerequisites
+#### Ruby Gems
+- ruby "2.7.4"
+- gem "rails", "~> 7.0.4", ">= 7.0.4.2"
+- gem "sqlite3", "~> 1.4"
+- gem 'bcrypt', '~> 3.1', '>= 3.1.18'
+- gem 'active_model_serializers', '~> 0.10.2'
+- gem 'byebug', '~> 11.1', '>= 11.1.3'
+- gem "puma", "~> 5.0"
+- gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 
-* Services (job queues, cache servers, search engines, etc.)
+### NPM Packages
+- "@testing-library/jest-dom": "^5.16.5",
+- "@testing-library/react": "^13.4.0",
+- "@testing-library/user-event": "^13.5.0",
+- "react": "^18.2.0",
+- "react-dom": "^18.2.0",
+- "react-router-dom": "^6.8.1",
+- "react-scripts": "5.0.1",
+- "react-select": "^5.7.0",
+- "uuidv4": "^6.2.13",
+- "web-vitals": "^2.1.4"
 
-* Deployment instructions
+### Installation
 
-* ...
+Step-by-step instructions on how to set up the project. Include code blocks for terminal commands and/or code examples.
+
+1. Clone the repository:
+
+```
+git clone git@github.com:lbarsis/theme-park-planner.git
+```
+
+2. Navigate to the project directory:
+```
+cd theme-park-planner
+```
+
+3. Install dependencies:
+```
+```
+
+4. Build and run the project:
+```
+```
+
+## Usage
+
+### Basic Usage
+Provide examples of the most common uses of your project.
+```
+```
+
+### Advanced Usage
+```
+```
+
+## License
+This project is licensed under the MIT License - see the LICENSE.md file for details.
