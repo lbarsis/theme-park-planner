@@ -65,22 +65,17 @@ cd theme-park-planner
 
 3. Install dependencies:
 ```
-```
-
-4. Build and run the project:
-```
+npm install --prefix client
+bundle install
 ```
 
 ## Usage
 
 ### Basic Usage
-Provide examples of the most common uses of your project.
-```
-```
+Basic users will have the ability to create personal itineraries from a pre-existing list of theme parks and associated rides. ride details to be included at a later date.
 
 ### Advanced Usage
-```
-```
+Admin users have the ability to add theme parks and rides as well as provide admin priveleges to other users if desired.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE.md file for details.
