@@ -52,7 +52,7 @@ function AddRide({ themeParks, onAddRide }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>Name of Theme Park</label>
+        <label>Name of Ride</label>
         <input
           type="text"
           name="name"
@@ -60,7 +60,7 @@ function AddRide({ themeParks, onAddRide }) {
           value={formData.name}
         />
 
-        <label>thrill_level</label>
+        <label>Thrill Level</label>
         <input
           type="text"
           name="thrill_level"
@@ -68,7 +68,7 @@ function AddRide({ themeParks, onAddRide }) {
           value={formData.thrill_level}
         />
 
-        <label>duration</label>
+        <label>Duration</label>
         <input
           type="text"
           name="duration"
@@ -76,7 +76,7 @@ function AddRide({ themeParks, onAddRide }) {
           value={formData.duration}
         />
 
-        <label>capacity</label>
+        <label>Capacity</label>
         <input
           type="text"
           name="capacity"
@@ -84,7 +84,7 @@ function AddRide({ themeParks, onAddRide }) {
           value={formData.capacity}
         />
 
-        <label>description</label>
+        <label>Description</label>
         <input
           type="text"
           name="description"
@@ -92,7 +92,7 @@ function AddRide({ themeParks, onAddRide }) {
           value={formData.description}
         />
 
-        <label>theme_park_id</label>
+        <label>Theme Park</label>
         <Select options={options} onChange={theme_park_id => setFormData({ ...formData, theme_park_id })} />
 
         <button>submit</button>
