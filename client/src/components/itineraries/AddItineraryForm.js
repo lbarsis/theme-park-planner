@@ -60,6 +60,7 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
               start_date: '',
               end_date: ''
             })
+            navigate('/my-itineraries')
           })
         } else {
           r.json().then(err => {
@@ -68,7 +69,6 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
         }
       }
       )
-      navigate('/my-itineraries')
   }
 
   const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
