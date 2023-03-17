@@ -9,7 +9,7 @@ function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEdit
     name: itinerary.name,
     ride_ids: itinerary.rides.map(ride => JSON.parse(JSON.stringify({ value: ride.id, label: ride.name }))),
     group_size: itinerary.group_size,
-    theme_park: itinerary.rides[0] ? themeParks.filter(themePark => itinerary?.rides[0].theme_park_id === themePark.id)[0] : themeParks[0],
+    theme_park: itinerary.rides[0] ? JSON.stringify(themeParks.filter(themePark => itinerary?.rides[0].theme_park_id === themePark.id)[0]) : themeParks[0],
     // theme_park: themeParks[0],
     start_date: itinerary.start_date ? itinerary.start_date : '',
     end_date: itinerary.end_date ? itinerary.end_date : ''
@@ -70,7 +70,7 @@ function EditItineraryForm({ itinerary, themeParks, onUpdateItinerary, setIsEdit
   const themeParkOptions = themeParks.map(themePark => <option key={themePark.id} value={JSON.stringify(themePark)}>{themePark.name}</option>)
   const rideOptions = []
 
-  const options = formData.theme_park !== '-' ? formData.theme_park.rides.map(ride => {
+  const options = formData.theme_park !== '-' ? JSON.parse(formData.theme_park).rides.map(ride => {
     return [...rideOptions, { value: ride.id, label: ride.name }]
   }) : []
 
