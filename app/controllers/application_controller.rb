@@ -13,7 +13,7 @@ class ApplicationController < ActionController::API
   end
 
   def require_admin
-    render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user.admin?
+    # render json: { errors: ["Not authorized"] }, status: :unauthorized unless @current_user.admin?
   end
 
   def render_unprocessable_entity_response(exception)
