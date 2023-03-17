@@ -20,6 +20,9 @@ function Navbar({ user, onLogout }) {
           <NavLink to='/'>Home</NavLink>
           <NavLink to='/my-itineraries'>My-Itineraries</NavLink>
           <NavLink to='/add-itinerary'>New Itinerary</NavLink>
+          <NavLink to='/users'>Users</NavLink>
+          <NavLink to='/add-theme-park'>Add Theme Park</NavLink>
+          <NavLink to='/add-ride'>Add Ride</NavLink>
           {
             user.admin ?
               <>
