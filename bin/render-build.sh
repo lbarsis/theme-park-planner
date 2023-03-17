@@ -7,5 +7,5 @@ rm -rf public
 npm install --prefix client && npm run build --prefix client
 cp -a client/build/. public/
 
-sudo apt-get install libpq-dev ruby-dev
+bundle install
 bundle exec rake db:migrate
