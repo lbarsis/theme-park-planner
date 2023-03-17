@@ -1,7 +1,7 @@
 class ItinerariesController < ApplicationController
   def index
     itineraries = @current_user.itineraries
-    render json: itineraries
+    render json: itineraries, status: :ok
   end
 
   def create
