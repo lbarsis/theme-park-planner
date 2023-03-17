@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :itineraries
-  resources :rides
-  resources :theme_parks
-  resources :users
+  resources :itineraries, only: [:index, :create, :update, :show, :destroy]
+  resources :rides, only: [:index, :create]
+  resources :theme_parks, only: [:index, :create, :destroy]
+  resources :users, only: [:index, :create, :update]
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
