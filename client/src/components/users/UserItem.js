@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 function UserItem({ user }) {
   const [isAdmin, setIsAdmin] = useState(user.admin)
+  const [adminErrors, setAdminErrors] = useState(null)
 
   function handleAssignAdmin() {
 
@@ -14,9 +16,9 @@ function UserItem({ user }) {
     })
     .then(r => {
       if (r.ok) {
-        r.json().then(user => console.log(user))
+        r.json()
       } else {
-        r.json().then(errors => console.log(errors))
+        r.json().then(errors => setAdminErrors(errors))
       }
     })
 
@@ -29,6 +31,9 @@ function UserItem({ user }) {
         {user.username}
         <input type="checkbox" id="vehicle1" onChange={handleAssignAdmin} checked={isAdmin} />
       </p>
+      {
+        adminErrors ? adminErrors.map(errors => <p key={uuidv4()}>{errors}</p>) : null
+      }
     </div>
   );
 }
