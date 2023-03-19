@@ -52,7 +52,7 @@ function AddRide({ themeParks, onAddRide }) {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label>Name of Theme Park</label>
+        <label>Name of Ride</label>
         <input
           type="text"
           name="name"
