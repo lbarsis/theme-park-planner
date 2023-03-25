@@ -1,20 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
+import { UserContext } from '../../context/userContext';
 import UserItem from './UserItem';
 
-function Users({ currentUser }) {
-  const [userErrors, setUserErrors] = useState(null)
-  const [users, setUsers] = useState([])
-
-  useEffect(() => {
-    fetch('/users').then(r => {
-      if (r.ok) {
-        r.json().then(users => setUsers(users))
-      } else {
-        r.json().then(errors => setUserErrors(errors))
-      }
-    })
-
-  }, [])
+function Users() {
+  const { users } = useContext(UserContext)
 
   const displayUsers = users.map(user => {
     return <UserItem key={user.id} user={user} />

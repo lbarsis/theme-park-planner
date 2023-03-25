@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-function UserItem({ user }) {
+function UserItem( {user} ) {
   const [isAdmin, setIsAdmin] = useState(user.admin)
   const [adminErrors, setAdminErrors] = useState(null)
 

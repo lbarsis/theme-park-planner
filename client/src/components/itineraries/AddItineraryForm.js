@@ -1,9 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import Select from 'react-select'
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../../context/userContext';
+import { ThemeParkContext } from '../../context/themeParkContext';
 
-function AddItineraryForm({ user, themeParks, onAddItinerary }) {
+function AddItineraryForm() {
+  const {user, handleAddNewItinerary} = useContext(UserContext);
+  const { themeParks } = useContext(ThemeParkContext)
+
   const navigate = useNavigate()
   const [itineraryErrors, setItineraryErrors] = useState(null)
   const [formData, setFormData] = useState({
@@ -50,7 +55,7 @@ function AddItineraryForm({ user, themeParks, onAddItinerary }) {
       .then(r => {
         if (r.ok) {
           r.json().then(itinerary => {
-            onAddItinerary(itinerary)
+            handleAddNewItinerary(itinerary)
             setItineraryErrors(null)
             setFormData({
               name: '',

@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/userContext';
 
-function Login({ onLogin }) {
+function Login() {
+  const { setUser } = useContext(UserContext)
+  const [loginErrors, setLoginErrors] = useState(null)
   const navigate = useNavigate()
-  const [errors, setErrors] = useState([]);
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -26,19 +28,19 @@ function Login({ onLogin }) {
       .then(r => {
         if (r.ok) {
           r.json().then(user => {
-            onLogin(user)
+            setUser(user)
             navigate('/')
           })
         } else {
           r.json().then(err => {
-            setErrors(err.errors)
+            setLoginErrors(err)
           })
         }
       }
       )
   }
 
-  const displayErrors = errors.map(e => <p key={e.indexOf(e, e)}>{e}</p>)
+  const displayErrors = loginErrors?.errors.map(e => <p key={e.indexOf(e, e)}>{e}</p>)
 
   return (
     <div>
@@ -60,8 +62,9 @@ function Login({ onLogin }) {
         />
 
         <button>submit</button>
+
+        {loginErrors ? displayErrors : null}
       </form>
-      {errors ? displayErrors : null}
     </div>
   );
 }

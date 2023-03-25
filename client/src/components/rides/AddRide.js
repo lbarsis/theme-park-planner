@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom';
 import Select from 'react-select'
+import { ThemeParkContext } from '../../context/themeParkContext';
 
-function AddRide({ themeParks, onAddRide }) {
+function AddRide() {
+  const { themeParks, handleAddRideToThemePark } = useContext(ThemeParkContext)
   const navigateHome = useNavigate()
   const [rideErrors, setRideErrors] = useState(null)
   const [formData, setFormData] = useState({
@@ -39,7 +41,7 @@ function AddRide({ themeParks, onAddRide }) {
       .then(r => {
         if (r.ok) {
           r.json().then(newRide => {
-            onAddRide(newRide)
+            handleAddRideToThemePark(newRide)
             navigateHome('/')
           })
         } else {

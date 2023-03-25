@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom'
+import { ThemeParkContext } from '../../context/themeParkContext';
 
-function AddThemePark({ onAddThemePark }) {
+function AddThemePark() {
+  const {handleAddThemePark} = useContext(ThemeParkContext)
   const navigateHome = useNavigate()
   const [themeParkErrors, setThemeParkErrors] = useState(null)
   const [formData, setFormData] = useState({
@@ -29,7 +31,7 @@ function AddThemePark({ onAddThemePark }) {
       .then(r => {
         if (r.ok) {
           r.json().then(newThemePark => {
-            onAddThemePark(newThemePark)
+            handleAddThemePark(newThemePark)
             navigateHome('/')
           })
         } else {

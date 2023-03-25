@@ -1,7 +1,9 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/userContext';
 
-function Navbar({ user, onLogout }) {
+function Navbar() {
+  const {user, setUser} = useContext(UserContext)
   const navigate = useNavigate()
 
   function handleLogout() {
@@ -9,7 +11,7 @@ function Navbar({ user, onLogout }) {
       method: 'DELETE'
     })
 
-    onLogout(null)
+    setUser(null)
     navigate('/')
   }
 
