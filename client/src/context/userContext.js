@@ -1,23 +1,19 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { ErrorsContext } from "./errorsContext";
+import { createContext, useState, useEffect } from "react";
+// import { ErrorsContext } from "./errorsContext";
 
 const UserContext = createContext(null)
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [users, setUsers] = useState([])
-  const { setErrors } = useContext(ErrorsContext);
+  // const { setErrors } = useContext(ErrorsContext);
 
   useEffect(() => {
     // auto-login
     fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
-      } else {
-        r.json().then(errors => {
-          setErrors(errors)
-        })
-      }
+      } 
     });
   }, []);
 
@@ -26,9 +22,7 @@ const UserProvider = ({ children }) => {
     fetch('/users').then(r => {
       if (r.ok) {
         r.json().then(users => setUsers(users))
-      } else {
-        r.json().then(errors => setErrors(errors))
-      }
+      } 
     })
 
   }, [])

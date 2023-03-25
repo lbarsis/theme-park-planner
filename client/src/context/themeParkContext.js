@@ -1,20 +1,18 @@
-import { createContext, useState, useEffect, useContext } from "react";
-import { ErrorsContext } from "./errorsContext";
+import { createContext, useState, useEffect } from "react";
+// import { ErrorsContext } from "./errorsContext";
 
 const ThemeParkContext = createContext([])
 
 const ThemeParkProvider = ({ children }) => {  
   const [themeParks, setThemeParks] = useState([])
-  const { setErrors } = useContext(ErrorsContext);
+  // const { setErrors } = useContext(ErrorsContext);
 
   useEffect(() => {
     fetch('/theme_parks')
       .then(r => {
         if (r.ok) {
           r.json().then(themeParks => setThemeParks(themeParks))
-        } else {
-          r.json().then(errors => setErrors(errors))
-        }
+        } 
       })
   }, [])
 
