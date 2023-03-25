@@ -17,16 +17,6 @@ const UserProvider = ({ children }) => {
     });
   }, []);
 
-  
-  useEffect(() => {
-    fetch('/users').then(r => {
-      if (r.ok) {
-        r.json().then(users => setUsers(users))
-      } 
-    })
-
-  }, [])
-  
   function handleAddNewItinerary(itinerary) {
     setUser({
       ...user,
@@ -57,7 +47,7 @@ const UserProvider = ({ children }) => {
   }
 
   return (
-    <UserContext.Provider value={ {user, setUser, users, handleAddNewItinerary, handleDeleteItinerary, handleUpdateItinerary}}>
+    <UserContext.Provider value={ {user, setUser, users, setUsers, handleAddNewItinerary, handleDeleteItinerary, handleUpdateItinerary}}>
       {children}
     </UserContext.Provider>
   )
