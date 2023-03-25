@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context/userContext';
 
 
-function Signup({ onLogin }) {
+function Signup() {
+  const {setUser} = useContext(UserContext)
   const navigate = useNavigate()
   const [signupErrors, setSignupErrors] =useState(null)
   const [formData, setFormData] = useState({
@@ -30,7 +32,7 @@ function Signup({ onLogin }) {
     .then( r => {
       if (r.ok) {
         r.json().then(user => {
-          onLogin(user)
+          setUser(user)
           setSignupErrors(null)
           navigate('/')
         })
