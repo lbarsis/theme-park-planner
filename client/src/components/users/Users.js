@@ -12,7 +12,7 @@ function Users() {
       } 
     })
 
-  }, [])
+  }, [setUsers])
 
   const displayUsers = users.map(user => {
     return <UserItem key={user.id} user={user} />
