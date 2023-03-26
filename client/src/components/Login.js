@@ -55,7 +55,9 @@ function Login() {
 
         <label>Password</label>
         <input
-          type="text"
+          type="password"
+          autocomplete="current-password"
+          required
           name="password"
           onChange={handleChange}
           value={formData.password}

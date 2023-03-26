@@ -3,8 +3,13 @@ import EditItineraryForm from './EditItineraryForm';
 
 function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks, onUpdateItinerary }) {
   const [isEditing, setIsEditing] = useState(false)
-  const { id, rides, start_date, end_date } = itinerary
-  const displayRides = rides.map(ride => <p key={ride.id}>{ride.name}</p>)
+  const { id, rides, group_size, start_date, end_date } = itinerary
+
+  const displayRides = rides.map(ride => {
+    return (
+      <p key={ride.id}>{ride.name}</p>
+    )
+  })
 
   function handleDelete() {
     fetch(`/itineraries/${id}`, {
@@ -34,6 +39,7 @@ function ItineraryItem({ itinerary, setErrors, onDeleteItinerary, themeParks, on
         <>
           <h2>
             {itinerary.name}
+            <p>Group Size: {group_size}</p>
             <p>Start: {start_date}</p>
             <p>End: {end_date}</p>
           </h2>

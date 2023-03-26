@@ -71,8 +71,9 @@ function Signup() {
 
         <label>Password</label>
         <input
-          type="text"
+          type="password"
           name="password"
+          required
           onChange={handleChange}
           value={formData.password}
         />
