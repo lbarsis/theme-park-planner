@@ -56,7 +56,6 @@ function Login() {
         <label>Password</label>
         <input
           type="password"
-          autocomplete="current-password"
           required
           name="password"
           onChange={handleChange}
