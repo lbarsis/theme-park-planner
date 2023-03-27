@@ -3,6 +3,8 @@ class User < ApplicationRecord
   has_secure_password
   has_many :itineraries
   has_many :rides, through: :itineraries
+  has_many :ride_users
+  has_many :rides, through: :ride_users
   # Validations
   validates :name, presence: true, length: { minimum: 2 }
   validates :username, presence: true, uniqueness: true, length: { minimum: 3 }, format: { with: /\A[a-zA-Z0-9]+\z/, message: 'only allows letters and numbers' }

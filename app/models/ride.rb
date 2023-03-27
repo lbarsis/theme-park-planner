@@ -6,4 +6,8 @@ class Ride < ApplicationRecord
 
   validates :name, :thrill_level, :duration, :capacity, :description, :theme_park, presence: :true
 
+  def average_rating
+    ride_average = self.ride_users.average(:rating).to_f
+  end
+
 end

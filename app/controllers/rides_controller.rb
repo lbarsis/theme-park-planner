@@ -1,4 +1,5 @@
 class RidesController < ApplicationController
+  # skip_before_action :authorize
   before_action :require_admin, only: :create
 
   def index

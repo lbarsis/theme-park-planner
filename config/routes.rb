@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :rides, only: [:index, :create]
   resources :theme_parks, only: [:index, :create, :destroy]
   resources :users, only: [:index, :create, :update]
+  resources :ride_users, only: [:index]
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

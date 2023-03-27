@@ -62,3 +62,7 @@ itinerary1 = Itinerary.create(name: "Magical Vacation", group_size: 4, start_dat
 itinerary2 = Itinerary.create(name: "Disney Adventure", group_size: 2, start_date: Date.today + 2, end_date: Date.today + 8, user: user2, rides:[it_s_a_small_world, splash_mountain])
 
 
+# # create ride_users
+RideUser.create(ride: pirates_of_caribbean, user: admin, review: "meh", rating: 3)
+RideUser.create(ride: haunted_mansion, user: admin, review: "pretty good!", rating: 4)
+RideUser.create(ride: pirates_of_caribbean, user: lbarsis, review: "BAD", rating: 1)
