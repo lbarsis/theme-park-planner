@@ -6,6 +6,40 @@ nav {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
+img {
+  width: 100%;
+}
+
+/* Bordered form */
+form {
+  background-color: #ffffff;
+  margin: 100px auto;
+  padding: 40px;
+  width: 70%;
+  min-width: 300px;
+}
+
+/* Full-width inputs */
+input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #2a9d8f;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
 .navbar button {
   background: #264653;
   border-bottom: 5px solid #2a9d8f;
@@ -40,6 +74,95 @@ a.active {
   border-bottom: 5px solid #e76f51;
 }
 
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr .25fr;
+}
+
+.review-card-container button {
+  display: block;
+  margin: 5px 0 5px 150px;
+  justify-content: right;
+  max-width: 100px;
+}
+
+.review-card {
+  width: 250px;
+  padding-bottom: 15px;
+  vertical-align: top;
+  min-height: 500px;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  max-width: 750px;
+  justify-content: center;
+  position: relative;
+}
+
+.review-card h6, p {
+  margin: 0 10px 5px 10px;
+  padding: 0;
+}
+
+.review-card div form, input, label {
+  display: block;
+
+  min-width: 5px;
+  padding: 0;
+  margin: auto;
+}
+
+.review-card #submit-review-button {
+  margin: 5px 0px 5px 100px;
+}
+
+.review-card #review-text {
+  max-width: 225px;
+  height: 100px;
+  text-align: left;
+  
+}
+
+.review {
+  margin: 5px;
+  border: black solid 1px;
+  border-radius: 5px;
+}
+
+
+/*  ---------------------------------------------------------------------  */
+
+.star-rating {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.star {
+  font-size: 24px;
+  color: lightgray;
+  cursor: pointer;
+  transition: color 200ms;
+  /* margin-left: -100px; Add this line */
+  /* margin-right: -135px;  */
+  padding-top: 0;
+}
+
+input[type="radio"]:checked ~ .star {
+  color: gold;
+}
+
+input[type="radio"]:hover ~ .star {
+  color: gold;
+}
+/*  ---------------------------------------------------------------------  */
+
+
 .ride-container {
   text-align: center;
   font-size: large;
@@ -47,7 +170,7 @@ a.active {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 10px
-  /* overflow: scroll; */
+    /* overflow: scroll; */
 }
 
 .ride-container div {
@@ -58,6 +181,14 @@ a.active {
   background: white;
 }
 
+.ride-container .ride-button {
+  position: relative;
+  bottom: 0;
+  padding: 5px;
+  background-color: #2a9d8f;
+  width: 95%;
+}
+
 .confetti-img {
   transform: rotate(180deg);
   width: 35%;
@@ -66,38 +197,10 @@ a.active {
   left: 0;
 }
 
-img {
-  width: 100%;
-}
 
-/* Bordered form */
-form {
-  background-color: #ffffff;
-  margin: 100px auto;
-  padding: 40px;
-  width: 70%;
-  min-width: 300px;
-}
 
-/* Full-width inputs */
-input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-  background-color: #2a9d8f;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
+.ride-container h5 {
+  margin: 0;
 }
 
 /* Add a hover effect for buttons */
@@ -137,9 +240,10 @@ input[type=submit] {
   height: fit-content;
   vertical-align: top;
   min-height: 500px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
-  border-radius: 5px; /* 5px rounded corners */
+  border-radius: 5px;
+  /* 5px rounded corners */
   width: 100%;
   justify-content: center;
 }
@@ -161,23 +265,24 @@ input[type=submit] {
 
 /* On mouse-over, add a deeper shadow */
 .card:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .theme-park-card {
-    /* Add shadows to create the "card" effect */
-    /* display: inline-block; */
-    height: 500px;
-    vertical-align: top;
-    min-height: 500px;
-    margin: auto;
-    margin-top: 20px;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    border-radius: 5px; /* 5px rounded corners */
-    max-width: 750px;
-    justify-content: center;
-    position: relative;
+  /* Add shadows to create the "card" effect */
+  /* display: inline-block; */
+  height: 500px;
+  vertical-align: top;
+  min-height: 500px;
+  margin: auto;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  border-radius: 5px;
+  /* 5px rounded corners */
+  max-width: 750px;
+  justify-content: center;
+  position: relative;
 }
 
 .theme-park-card p {
@@ -191,10 +296,12 @@ input[type=submit] {
   position: absolute;
   bottom: 0;
   margin: 0;
+  background-color: #e76f51;
 }
 
 
-h1, h2 {
+h1,
+h2 {
   text-align: center;
   border-bottom: 5px solid #e76f51;
   background-color: #e9c46a;

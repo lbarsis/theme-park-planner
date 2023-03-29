@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   resources :itineraries, only: [:index, :create, :update, :show, :destroy]
-  resources :rides, only: [:index, :create]
+  resources :rides, only: [:index, :show, :create]
   resources :theme_parks, only: [:index, :create, :destroy]
   resources :users, only: [:index, :create, :update]
-  resources :ride_users, only: [:index]
+  resources :ride_users, only: [:index, :create]
+
+  # resources :rides do 
+  #   resources :ride_users
+  # end
 
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'

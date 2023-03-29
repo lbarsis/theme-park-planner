@@ -6,6 +6,11 @@ class RidesController < ApplicationController
     rides = Ride.all
     render json: rides, status: :ok
   end
+  
+  def show
+    ride = Ride.find(params[:id])
+    render json: ride, status: :ok
+  end
 
   def create
     ride = Ride.create!(ride_params)

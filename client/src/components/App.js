@@ -12,6 +12,10 @@ import AddRide from './rides/AddRide';
 import { UserProvider } from '../context/userContext';
 import { ErrorsProvider } from '../context/errorsContext';
 import { ThemeParkProvider } from '../context/themeParkContext';
+import AddReviewForm from './reviews/AddReviewForm'
+import ReviewList from './reviews/ReviewList'
+import { ReviewProvider } from '../context/reviewContext';
+
 
 function App() {
 
@@ -20,17 +24,21 @@ function App() {
       <ErrorsProvider>
         <ThemeParkProvider>
           <UserProvider>
-            <Navbar />
-            <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/my-itineraries' element={<UserItineraries />} />
-              <Route path='/add-itinerary' element={<AddItineraryForm />} />
-              <Route path='/add-theme-park' element={<AddThemePark  />} />
-              <Route path='/add-ride' element={<AddRide  />} />
-              <Route path='/login' element={<Login />} />
-              <Route path='/signup' element={<Signup />} />
-              <Route path='/users' element={<Users />} />
-            </Routes>
+            <ReviewProvider>
+              <Navbar />
+              <Routes>
+                <Route path='/' element={<Home />} />
+                <Route path='/my-itineraries' element={<UserItineraries />} />
+                <Route path='/add-itinerary' element={<AddItineraryForm />} />
+                <Route path='/add-theme-park' element={<AddThemePark />} />
+                <Route path='/reviews' element={<ReviewList />} />
+                <Route path='/add-ride-review' element={<AddReviewForm />} />
+                <Route path='/add-ride' element={<AddRide />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/signup' element={<Signup />} />
+                <Route path='/users' element={<Users />} />
+              </Routes>
+            </ReviewProvider>
           </UserProvider>
         </ThemeParkProvider>
       </ErrorsProvider>

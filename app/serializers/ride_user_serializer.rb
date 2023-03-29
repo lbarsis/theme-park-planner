@@ -1,5 +1,6 @@
 class RideUserSerializer < ActiveModel::Serializer
-  attributes :id, :review, :rating
-  has_one :ride
-  has_one :user
+  attributes :id, :review, :rating, :user_name
+  belongs_to :ride
+  belongs_to :user
+
 end
