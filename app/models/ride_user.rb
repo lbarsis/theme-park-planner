@@ -3,6 +3,8 @@ class RideUser < ApplicationRecord
   belongs_to :ride
   belongs_to :user
 
+  validates :rating, :review, presence: :true
+
   def user_name
     self.user.name
   end

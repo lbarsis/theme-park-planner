@@ -14,7 +14,6 @@ function RideCard({ ride }) {
     <>
       <div key={ride.id} onClick={handleRideReview}>
         <h5>{ride.name}</h5>
-        <p>Average Rating: {ride.average_rating}</p>
       </div>
     </>
   );

@@ -11,6 +11,12 @@ class RideUsersController < ApplicationController
     render json: review, status: :created
   end
 
+  def destroy
+    review = @current_user.ride_users.find(params[:id])
+    review.destroy
+    render json: {message: "Review Deleted"}, head: :no_content
+  end
+
   private
 
   def ride_user_params

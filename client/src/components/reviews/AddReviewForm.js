@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import Select from 'react-select'
-import { ThemeParkContext } from '../../context/themeParkContext';
+import {ErrorsContext} from '../../context/errorsContext'
+import { ReviewsContext } from '../../context/reviewContext';
 
-function AddReviewForm({ rideReview }) {
-  // const {themeParks} = useContext(ThemeParkContext)
+function AddReviewForm() {
+  const { setErrors } = useContext(ErrorsContext)
+  const { rideReview, addRideReview, setIsWritingReview } = useContext(ReviewsContext)
   const [formData, setFormData] = useState({
     // theme_park: '',
     // ride: '',
@@ -30,25 +31,24 @@ function AddReviewForm({ rideReview }) {
         review: formData.review
       })
     })
+    .then(r => {
+      if (r.ok) {
+        r.json().then(review => addRideReview(review))
+      } else {
+        r.json().then(errors => setErrors(errors))
+      }
+    })
+
+    setFormData({
+      review: ''
+    })
+
+    setIsWritingReview(false)
   }
-
-  // const themeParkOptions = themeParks.map(themePark => {
-  //   return { value: themePark, label: themePark.name }
-  // })
-
-  // const rideOptions = formData?.theme_park.value?.rides.map(ride => {
-  //   return { value: ride, label: ride.name}
-  // })
 
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        {/* <label>Theme Park</label>
-        <Select options={themeParkOptions} onChange={theme_park => setFormData({ ...formData, theme_park })} />
-
-        <label>Ride</label> */}
-        {/* <Select options={rideOptions} onChange={ride => setFormData({ ...formData, ride })} /> */}
-
         <label>Rating</label>
         <div className="star-rating">
             <input type="radio" id="star5" name="rating" onChange={handleChange} value="5"/>
