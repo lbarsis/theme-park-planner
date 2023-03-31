@@ -2,17 +2,17 @@ import React, { useContext } from 'react';
 import { ReviewsContext } from '../../context/reviewContext';
 
 function RideCard({ ride }) {
-  const { setRideReview } = useContext(ReviewsContext)
+  const { setRide } = useContext(ReviewsContext)
 
-  function handleRideReview() {
+  function handleSetRide() {
     fetch(`/rides/${ride.id}`)
     .then(r => r.json())
-    .then(ride => setRideReview(ride))
+    .then(ride => setRide(ride))
   }
-
+  
   return (
     <>
-      <div key={ride.id} onClick={handleRideReview}>
+      <div key={ride.id} onClick={handleSetRide}>
         <h5>{ride.name}</h5>
       </div>
     </>

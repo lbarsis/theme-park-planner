@@ -158,8 +158,6 @@ input[type="radio"] {
   color: lightgray;
   cursor: pointer;
   transition: color 200ms;
-  /* margin-left: -100px; Add this line */
-  /* margin-right: -135px;  */
   padding-top: 0;
 }
 

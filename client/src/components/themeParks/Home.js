@@ -8,7 +8,7 @@ import { ReviewsContext } from '../../context/reviewContext';
 function Home() {
   const { themeParks, handleDeleteThemePark } = useContext(ThemeParkContext);
   const { user } = useContext(UserContext)
-  const { rideReview } = useContext(ReviewsContext)
+  const { ride } = useContext(ReviewsContext)
 
   const displayThemeParks = themeParks.map(themePark => {
     return (
@@ -22,7 +22,7 @@ function Home() {
         {displayThemeParks}
       </div>
       {
-        rideReview ?
+        ride ?
           <ReviewCard />
           :
           null
