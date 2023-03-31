@@ -6,7 +6,7 @@ import ReviewItem from './ReviewItem';
 function ReviewCard() {
   const { ride, isWritingReview, setIsWritingReview } = useContext(ReviewsContext)
 
-  const displayReviews = ride.ride_users.map(review => {
+  const displayReviews = ride?.ride_users?.map(review => {
     return (
        <ReviewItem key={review.id} review={review}  />
     )
