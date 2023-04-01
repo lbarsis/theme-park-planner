@@ -16,19 +16,20 @@ function ReviewCard() {
     <div className='review-card-container'>
 
       <div className='review-card'>
-
         <h2>
           {ride?.name}
           <p>Average Rating: {ride?.average_rating}</p>
-          <button onClick={() => setIsWritingReview(review => !review)}>Review</button>
         </h2>
-        {
-          isWritingReview ?
-            <AddReviewForm />
-            :
-            null
-        }
-        {displayReviews}
+        <div className='scroll-container'>
+          {
+            isWritingReview ?
+              <AddReviewForm />
+              :
+              null
+          }
+          {displayReviews}
+        </div>
+        <button onClick={() => setIsWritingReview(review => !review)}>Review</button>
       </div>
     </div>
   );
