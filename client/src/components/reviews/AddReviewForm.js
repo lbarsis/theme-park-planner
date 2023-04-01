@@ -37,7 +37,6 @@ function AddReviewForm() {
             setFormData({
               review: ''
             })
-
           })
         } else {
           r.json().then(errors => setErrors(errors))

@@ -210,7 +210,8 @@ input[type="radio"]:hover~.star {
   margin: 15px 50px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-gap: 10px
+  grid-gap: 10px;
+  cursor: pointer;
     /* overflow: scroll; */
 }
 
