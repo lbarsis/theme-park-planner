@@ -1,9 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { ReviewsContext } from '../../context/reviewContext';
 import EditReviewItem from './EditReviewItem';
+import { UserContext } from '../../context/userContext';
 
 function ReviewItem({ review }) {
   const { deleteReview } = useContext(ReviewsContext)
+  const { user } = useContext(UserContext)
   const [isEditingReview, setIsEditingReview] = useState(false)
 
   function handleDeleteReview() {
@@ -28,10 +30,18 @@ function ReviewItem({ review }) {
           <>
             <div className='review'>
               <div className='review-grid'>
-                <h6>{review.user_name}   |    Rating: {review.rating}</h6>
+                <h6>{review.username}   |    Rating: {review.rating}</h6>
                 <div></div>
-                <button onClick={() => setIsEditingReview(edit => !edit)}>✏️</button>
-                <button onClick={handleDeleteReview}>🗑️</button>
+
+                {
+                  review.username === user.username ?
+                    <>
+                      <button onClick={() => setIsEditingReview(edit => !edit)}>✏️</button>
+                      <button onClick={handleDeleteReview}>🗑️</button>
+                    </>
+                    :
+                    null
+                }
               </div>
               <p>{review.review}</p>
             </div>

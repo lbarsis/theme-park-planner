@@ -5,8 +5,8 @@ class RideUser < ApplicationRecord
 
   validates :rating, :review, presence: :true
 
-  def user_name
-    self.user.name
+  def username
+    self.user.username
   end
 
 end

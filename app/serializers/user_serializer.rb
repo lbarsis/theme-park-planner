@@ -1,4 +1,4 @@
 class UserSerializer < ActiveModel::Serializer
   has_many :itineraries
-  attributes :id, :name, :username, :admin
+  attributes :id, :name, :username, :admin, :ride_users
 end
