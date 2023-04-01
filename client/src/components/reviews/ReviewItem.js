@@ -27,13 +27,13 @@ function ReviewItem({ review }) {
           :
           <>
             <div className='review'>
-              <h6>{review.user_name}   |    Rating: {review.rating}</h6>
               <div className='review-grid'>
-                <p>{review.review}</p>
+                <h6>{review.user_name}   |    Rating: {review.rating}</h6>
                 <div></div>
-                <button onClick={() => setIsEditingReview(edit => !edit)}>Edit</button>
-                <button onClick={handleDeleteReview}>Delete</button>
+                <button onClick={() => setIsEditingReview(edit => !edit)}>✏️</button>
+                <button onClick={handleDeleteReview}>🗑️</button>
               </div>
+              <p>{review.review}</p>
             </div>
           </>
       }

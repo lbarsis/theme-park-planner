@@ -8,16 +8,19 @@ function ReviewCard() {
 
   const displayReviews = ride?.ride_users?.map(review => {
     return (
-       <ReviewItem key={review.id} review={review}  />
+      <ReviewItem key={review.id} review={review} />
     )
   })
 
   return (
     <div className='review-card-container'>
+
       <div className='review-card'>
+
         <h2>
           {ride?.name}
           <p>Average Rating: {ride?.average_rating}</p>
+          <button onClick={() => setIsWritingReview(review => !review)}>Review</button>
         </h2>
         {
           isWritingReview ?
@@ -27,7 +30,6 @@ function ReviewCard() {
         }
         {displayReviews}
       </div>
-      <button onClick={() => setIsWritingReview(review => !review)}>Review</button>
     </div>
   );
 }

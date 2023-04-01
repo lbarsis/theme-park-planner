@@ -1,8 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, { useContext, useState } from 'react';
 import { ReviewsContext } from '../../context/reviewContext';
 
-function EditReviewItem( { review, setIsEditingReview } ) {
-  const {handleUpdateReview} = useContext(ReviewsContext)
+function EditReviewItem({ review, setIsEditingReview }) {
+  const { handleUpdateReview } = useContext(ReviewsContext)
   const [formData, setFormData] = useState({
     rating: parseInt(review.rating, 10),
     review: review.review
@@ -42,25 +42,24 @@ function EditReviewItem( { review, setIsEditingReview } ) {
   return (
     <div>
       <>
-        <h6>{review.user_name}   |    Rating: {review.rating}</h6>
+        {/* <h6>{review.user_name}   |    Rating: {review.rating}</h6> */}
         <form onSubmit={handleSubmit}>
-          <label>Rating</label>
+          {/* <label>Rating</label> */}
           <div className="star-rating">
-            <input type="radio" id="star5" name="rating" onChange={handleChange} value="5" checked={formData.rating === 5}/>
+            <input type="radio" id="star5" name="rating" onChange={handleChange} value="5" checked={formData.rating === 5} />
             <label htmlFor="star5" className="star">&#9733;</label>
-            <input type="radio" id="star4" name="rating" onChange={handleChange} value="4" checked={formData.rating === 4}/>
+            <input type="radio" id="star4" name="rating" onChange={handleChange} value="4" checked={formData.rating === 4} />
             <label htmlFor="star4" className="star">&#9733;</label>
-            <input type="radio" id="star3" name="rating" onChange={handleChange} value="3" checked={formData.rating === 3}/>
+            <input type="radio" id="star3" name="rating" onChange={handleChange} value="3" checked={formData.rating === 3} />
             <label htmlFor="star3" className="star">&#9733;</label>
-            <input type="radio" id="star2" name="rating" onChange={handleChange} value="2" checked={formData.rating === 2}/>
+            <input type="radio" id="star2" name="rating" onChange={handleChange} value="2" checked={formData.rating === 2} />
             <label htmlFor="star2" className="star">&#9733;</label>
-            <input type="radio" id="star1" name="rating" onChange={handleChange} value="1" checked={formData.rating === 1}/>
+            <input type="radio" id="star1" name="rating" onChange={handleChange} value="1" checked={formData.rating === 1} />
             <label htmlFor="star1" className="star">&#9733;</label>
+            <label><h6>{review.user_name}   |  Rating:</h6></label>
           </div>
 
-          <br />
-
-          <label>Review</label><br />
+          <label><h6>Review:</h6></label><br />
           <textarea
             id='review-text'
             type="text"
