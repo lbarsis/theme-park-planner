@@ -34,7 +34,7 @@ function ReviewItem({ review }) {
                 <div></div>
 
                 {
-                  review.username === user.username ?
+                  review.username === user?.username ?
                     <>
                       <button onClick={() => setIsEditingReview(edit => !edit)}>✏️</button>
                       <button onClick={handleDeleteReview}>🗑️</button>

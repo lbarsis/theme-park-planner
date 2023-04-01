@@ -3,7 +3,7 @@ import { ErrorsContext } from '../../context/errorsContext'
 import { ReviewsContext } from '../../context/reviewContext';
 
 function AddReviewForm() {
-  const { setErrors } = useContext(ErrorsContext)
+  const { errors, setErrors } = useContext(ErrorsContext)
   const { ride, addReview, setIsWritingReview } = useContext(ReviewsContext)
   const [formData, setFormData] = useState({
     rating: '',
@@ -34,16 +34,15 @@ function AddReviewForm() {
           r.json().then(review => {
             addReview(review)
             setIsWritingReview(false)
+            setFormData({
+              review: ''
+            })
+
           })
         } else {
           r.json().then(errors => setErrors(errors))
         }
       })
-
-    setFormData({
-      review: ''
-    })
-
   }
 
   return (
@@ -73,9 +72,12 @@ function AddReviewForm() {
           onChange={handleChange}
           value={formData.review}
         />
-
+        {
+          errors ? errors?.errors.map(error => <p key={error}>{error}</p>) : null
+        }
         <button type='submit' id='submit-review-button'>Submit</button>
       </form>
+
     </div>
   );
 }

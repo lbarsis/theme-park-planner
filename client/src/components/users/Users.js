@@ -15,7 +15,7 @@ function Users() {
   }, [setUsers])
 
   const displayUsers = users.map(user => {
-    return <UserItem key={user.id} user={user} />
+    return <UserItem key={user.username} user={user} />
   })
 
   return (

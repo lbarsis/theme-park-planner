@@ -12,7 +12,7 @@ function Home() {
 
   const displayThemeParks = themeParks.map(themePark => {
     return (
-      <ThemeParkCard key={themePark.id} user={user} themePark={themePark} onDeleteThemePark={handleDeleteThemePark} />
+      <ThemeParkCard key={themePark.name} user={user} themePark={themePark} onDeleteThemePark={handleDeleteThemePark} />
     )
   })
 
