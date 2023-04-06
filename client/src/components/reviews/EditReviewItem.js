@@ -1,8 +1,10 @@
 import React, { useContext, useState } from 'react';
 import { ReviewsContext } from '../../context/reviewContext';
+import { ErrorsContext } from '../../context/errorsContext';
 
 function EditReviewItem({ review, setIsEditingReview }) {
   const { handleUpdateReview } = useContext(ReviewsContext)
+  const { errors, setErrors } = useContext(ErrorsContext)
   const [formData, setFormData] = useState({
     rating: parseInt(review.rating, 10),
     review: review.review
@@ -34,7 +36,7 @@ function EditReviewItem({ review, setIsEditingReview }) {
             setIsEditingReview(false)
           })
         } else {
-          r.json().then(errors => console.log(errors))
+          r.json().then(errors => setErrors(errors))
         }
       })
   }
@@ -42,9 +44,7 @@ function EditReviewItem({ review, setIsEditingReview }) {
   return (
     <div>
       <>
-        {/* <h6>{review.user_name}   |    Rating: {review.rating}</h6> */}
         <form onSubmit={handleSubmit}>
-          {/* <label>Rating</label> */}
           <div className="star-rating">
             <input type="radio" id="star5" name="rating" onChange={handleChange} value="5" checked={formData.rating === 5} />
             <label htmlFor="star5" className="star">&#9733;</label>
@@ -70,6 +70,12 @@ function EditReviewItem({ review, setIsEditingReview }) {
 
           <button type='submit' id='submit-review-button'>Submit</button>
         </form>
+        {
+          errors ?
+            errors.errors.map(error => <p key={error}>{error}</p>)
+            :
+            null
+        }
       </>
     </div>
   );

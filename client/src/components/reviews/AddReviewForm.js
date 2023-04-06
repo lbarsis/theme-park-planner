@@ -37,6 +37,7 @@ function AddReviewForm() {
             setFormData({
               review: ''
             })
+            setErrors(null)
           })
         } else {
           r.json().then(errors => setErrors(errors))
@@ -76,6 +77,12 @@ function AddReviewForm() {
         }
         <button type='submit' id='submit-review-button'>Submit</button>
       </form>
+      {
+        errors ? 
+        errors.errors.map(error => <p key={error}>{error}</p>)
+        :
+        null
+      }
 
     </div>
   );

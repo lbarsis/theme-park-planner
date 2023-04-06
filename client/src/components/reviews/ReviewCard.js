@@ -2,9 +2,11 @@ import React, { useContext } from 'react';
 import { ReviewsContext } from '../../context/reviewContext';
 import AddReviewForm from '../reviews/AddReviewForm'
 import ReviewItem from './ReviewItem';
+import { ErrorsContext } from '../../context/errorsContext';
 
 function ReviewCard() {
   const { ride, isWritingReview, setIsWritingReview } = useContext(ReviewsContext)
+  const {  setErrors } = useContext(ErrorsContext)
 
   const displayReviews = ride?.ride_users?.map(review => {
     return (
@@ -12,13 +14,17 @@ function ReviewCard() {
     )
   })
 
+  function handleShowAddReviewForm() {
+    setIsWritingReview(review => !review)
+    setErrors(null)
+  }
+
   return (
     <div className='review-card-container'>
 
       <div className='review-card'>
         <h2>
           {ride?.name}
-          <p>Average Rating: {ride?.average_rating}</p>
         </h2>
         <div className='scroll-container'>
           {
@@ -29,7 +35,7 @@ function ReviewCard() {
           }
           {displayReviews}
         </div>
-        <button onClick={() => setIsWritingReview(review => !review)}>Review</button>
+        <button onClick={handleShowAddReviewForm}>Review</button>
       </div>
     </div>
   );

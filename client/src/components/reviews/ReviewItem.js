@@ -2,10 +2,12 @@ import React, { useContext, useState } from 'react';
 import { ReviewsContext } from '../../context/reviewContext';
 import EditReviewItem from './EditReviewItem';
 import { UserContext } from '../../context/userContext';
+import { ErrorsContext } from '../../context/errorsContext';
 
 function ReviewItem({ review }) {
   const { deleteReview } = useContext(ReviewsContext)
   const { user } = useContext(UserContext)
+  const { setErrors, errors } = useContext(ErrorsContext)
   const [isEditingReview, setIsEditingReview] = useState(false)
 
   function handleDeleteReview() {
@@ -16,9 +18,14 @@ function ReviewItem({ review }) {
         if (r.ok) {
           r.json().then(() => deleteReview(review.id))
         } else {
-          r.json().then(errors => console.log(errors))
+          r.json().then(errors => setErrors(errors))
         }
       })
+  }
+
+  function handleShowAddReviewForm() {
+    setIsEditingReview(edit => !edit)
+    setErrors(null)
   }
 
   return (
@@ -36,7 +43,7 @@ function ReviewItem({ review }) {
                 {
                   review.username === user?.username ?
                     <>
-                      <button onClick={() => setIsEditingReview(edit => !edit)}>✏️</button>
+                      <button onClick={handleShowAddReviewForm}>✏️</button>
                       <button onClick={handleDeleteReview}>🗑️</button>
                     </>
                     :
@@ -45,6 +52,12 @@ function ReviewItem({ review }) {
               </div>
               <p>{review.review}</p>
             </div>
+            {
+              errors ?
+                errors.errors.map(error => <p key={error}>{error}</p>)
+                :
+                null
+            }
           </>
       }
     </>
