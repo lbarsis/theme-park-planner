@@ -7,10 +7,11 @@ function UserItem( {user} ) {
 
   function handleAssignAdmin() {
 
-    fetch(`/users/${user.id}`, {
+    fetch(`/users/${user.username}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
+        ...user,
         admin: !isAdmin
       })
     })
@@ -26,7 +27,7 @@ function UserItem( {user} ) {
   }
 
   return (
-    <div key={user.id}>
+    <div key={user.username}>
       <p>
         {user.username}
         <input type="checkbox" id="vehicle1" onChange={handleAssignAdmin} checked={isAdmin} />
