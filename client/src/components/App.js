@@ -15,6 +15,7 @@ import { ThemeParkProvider } from '../context/themeParkContext';
 import AddReviewForm from './reviews/AddReviewForm'
 import ReviewList from './reviews/ReviewList'
 import { ReviewProvider } from '../context/reviewContext';
+import MyRides from './rides/MyRides';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
               <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/my-itineraries' element={<UserItineraries />} />
+                <Route path='/my-rides' element={<MyRides />} />
                 <Route path='/add-itinerary' element={<AddItineraryForm />} />
                 <Route path='/add-theme-park' element={<AddThemePark />} />
                 <Route path='/reviews' element={<ReviewList />} />

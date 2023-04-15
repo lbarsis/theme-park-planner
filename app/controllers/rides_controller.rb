@@ -16,6 +16,11 @@ class RidesController < ApplicationController
     ride = Ride.create!(ride_params)
     render json: ride, status: :created
   end
+
+  def top_three
+    rides = Ride.all.sort { |k, v| k.ride_users.count <=> v.ride_users.count }
+    render json: rides[0..2]
+  end
   
   private
 
