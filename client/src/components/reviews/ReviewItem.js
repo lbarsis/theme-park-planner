@@ -16,7 +16,7 @@ function ReviewItem({ review }) {
     })
       .then(r => {
         if (r.ok) {
-          r.json().then(() => deleteReview(review.id))
+          r.json().then(() => deleteReview(review))
         } else {
           r.json().then(errors => setErrors(errors))
         }

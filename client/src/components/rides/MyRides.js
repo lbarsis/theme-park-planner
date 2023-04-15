@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 
 function MyRides() {
-  const {user} = useContext(UserContext)
+  const { user } = useContext(UserContext)
 
   const displayRides = user?.my_rides.map(ride => <p key={ride.id}>{ride.name}</p>)
 
